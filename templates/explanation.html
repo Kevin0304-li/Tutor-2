@@ -81,6 +81,66 @@
                         </div>
                     </a>
                 </div>
+
+                <!-- AI Categories -->
+                <div class="topic-progress">
+                    <a href="#" class="list-group-item list-group-item-action" id="topic-categories">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="fas fa-sitemap me-2"></i>
+                                {% if language == 'english' %}
+                                    AI Categories
+                                {% else %}
+                                    人工智能分类
+                                {% endif %}
+                            </div>
+                            <span class="badge bg-primary rounded-pill">0%</span>
+                        </div>
+                        <div class="progress-indicator mt-2">
+                            <div class="progress-bar" style="width: 0%"></div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- AI Creativity -->
+                <div class="topic-progress">
+                    <a href="#" class="list-group-item list-group-item-action" id="topic-creativity">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="fas fa-lightbulb me-2"></i>
+                                {% if language == 'english' %}
+                                    AI & Creativity
+                                {% else %}
+                                    人工智能与创造力
+                                {% endif %}
+                            </div>
+                            <span class="badge bg-primary rounded-pill">0%</span>
+                        </div>
+                        <div class="progress-indicator mt-2">
+                            <div class="progress-bar" style="width: 0%"></div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Final Exam -->
+                <div class="topic-progress">
+                    <a href="#" class="list-group-item list-group-item-action" id="topic-exam">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="fas fa-graduation-cap me-2"></i>
+                                {% if language == 'english' %}
+                                    Final Exam
+                                {% else %}
+                                    期末考试
+                                {% endif %}
+                            </div>
+                            <span class="badge bg-primary rounded-pill">0%</span>
+                        </div>
+                        <div class="progress-indicator mt-2">
+                            <div class="progress-bar" style="width: 0%"></div>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -675,7 +735,7 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="card mb-3">
                                         <div class="card-header bg-light">
                                             <strong>娱乐</strong>
@@ -688,7 +748,7 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="mt-4">
                                         <h4><i class="fas fa-exclamation-triangle me-2"></i>挑战与伦理考量</h4>
                                         <div class="card">
@@ -699,6 +759,706 @@
                                                     <li><strong>就业替代：</strong>自动化可能会改变或消除某些类型的工作。</li>
                                                     <li><strong>安全与保障：</strong>强大的AI系统需要保障措施，防止滥用或意外行为。</li>
                                                 </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- AI Categories Content -->
+                    <div id="content-categories" class="topic-content d-none">
+                        {% if language == 'english' %}
+                            <div class="topic-card">
+                                <h3>AI Categories: Different Types of Artificial Intelligence</h3>
+                                <p class="lead">Discover the various specialized fields within AI and how they're changing our world!</p>
+                                
+                                <div class="alert alert-info p-4 mb-4">
+                                    <h4><i class="fas fa-info-circle me-2"></i>Why We Categorize AI</h4>
+                                    <p>Just like human intelligence has different forms (linguistic, logical, spatial, etc.), AI has developed specialized systems focused on specific tasks. These categories help researchers focus on particular challenges, and many real-world AI applications combine multiple categories to create powerful tools.</p>
+                                </div>
+                                
+                                <!-- Computer Vision -->
+                                <div class="category-section mb-5">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="category-icon me-3">
+                                            <i class="fas fa-eye fa-2x text-primary"></i>
+                                        </div>
+                                        <h4 class="mb-0">Computer Vision</h4>
+                                    </div>
+                                    
+                                    <p>Computer Vision is the field of AI that enables machines to "see" and interpret the visual world, processing and analyzing images and videos like humans do.</p>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="card h-100 mb-3">
+                                                <div class="card-header bg-light">
+                                                    <strong>Key Technologies</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul class="mb-0">
+                                                        <li><strong>Image Classification:</strong> Identifying what objects are in an image</li>
+                                                        <li><strong>Object Detection:</strong> Finding and identifying multiple objects in images</li>
+                                                        <li><strong>Facial Recognition:</strong> Identifying or verifying people from images</li>
+                                                        <li><strong>Scene Understanding:</strong> Comprehending the entire context of an image</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card h-100 mb-3">
+                                                <div class="card-header bg-light">
+                                                    <strong>Real-World Applications</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul class="mb-0">
+                                                        <li><strong>Medical Imaging:</strong> Detecting diseases from X-rays and scans</li>
+                                                        <li><strong>Autonomous Vehicles:</strong> Helping cars "see" roads and obstacles</li>
+                                                        <li><strong>Retail:</strong> Cashierless stores using computer vision to track items</li>
+                                                        <li><strong>Agriculture:</strong> Monitoring crop health and optimizing harvests</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Natural Language Processing -->
+                                <div class="category-section mb-5">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="category-icon me-3">
+                                            <i class="fas fa-comment-alt fa-2x text-primary"></i>
+                                        </div>
+                                        <h4 class="mb-0">Natural Language Processing (NLP)</h4>
+                                    </div>
+                                    
+                                    <p>NLP focuses on the interaction between computers and human language, enabling machines to read, understand, and generate human language in a valuable way.</p>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="card h-100 mb-3">
+                                                <div class="card-header bg-light">
+                                                    <strong>Key Technologies</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul class="mb-0">
+                                                        <li><strong>Sentiment Analysis:</strong> Determining the emotional tone behind text</li>
+                                                        <li><strong>Machine Translation:</strong> Converting text from one language to another</li>
+                                                        <li><strong>Text Summarization:</strong> Creating concise summaries of longer texts</li>
+                                                        <li><strong>Question Answering:</strong> Understanding and responding to human questions</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card h-100 mb-3">
+                                                <div class="card-header bg-light">
+                                                    <strong>Real-World Applications</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul class="mb-0">
+                                                        <li><strong>Virtual Assistants:</strong> Siri, Alexa, and Google Assistant</li>
+                                                        <li><strong>Customer Service:</strong> AI chatbots handling customer inquiries</li>
+                                                        <li><strong>Content Creation:</strong> AI writing assistants and tools</li>
+                                                        <li><strong>Social Media Monitoring:</strong> Tracking brand mentions and sentiment</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Robotics -->
+                                <div class="category-section mb-5">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="category-icon me-3">
+                                            <i class="fas fa-robot fa-2x text-primary"></i>
+                                        </div>
+                                        <h4 class="mb-0">AI in Robotics</h4>
+                                    </div>
+                                    
+                                    <p>Robotics AI combines artificial intelligence with mechanical engineering to create machines that can perform physical tasks in the real world.</p>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="card h-100 mb-3">
+                                                <div class="card-header bg-light">
+                                                    <strong>Key Technologies</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul class="mb-0">
+                                                        <li><strong>Motion Planning:</strong> Calculating efficient paths for robots to move</li>
+                                                        <li><strong>Manipulation:</strong> Precise control of robotic arms and grippers</li>
+                                                        <li><strong>SLAM:</strong> Simultaneous Localization and Mapping for navigation</li>
+                                                        <li><strong>Human-Robot Interaction:</strong> Enabling safe work alongside humans</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card h-100 mb-3">
+                                                <div class="card-header bg-light">
+                                                    <strong>Real-World Applications</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul class="mb-0">
+                                                        <li><strong>Manufacturing:</strong> Assembly line robots that can adapt to changes</li>
+                                                        <li><strong>Healthcare:</strong> Surgical robots assisting doctors with precision</li>
+                                                        <li><strong>Warehousing:</strong> Automated systems sorting and moving inventory</li>
+                                                        <li><strong>Exploration:</strong> Robots investigating dangerous or remote environments</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- AI in Decision Making -->
+                                <div class="category-section">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="category-icon me-3">
+                                            <i class="fas fa-chart-line fa-2x text-primary"></i>
+                                        </div>
+                                        <h4 class="mb-0">Decision Systems & Predictive Analytics</h4>
+                                    </div>
+                                    
+                                    <p>These AI systems analyze large amounts of data to identify patterns, make predictions, and support decision-making processes.</p>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="card h-100 mb-3">
+                                                <div class="card-header bg-light">
+                                                    <strong>Key Technologies</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul class="mb-0">
+                                                        <li><strong>Recommender Systems:</strong> Suggesting products or content based on preferences</li>
+                                                        <li><strong>Forecasting:</strong> Predicting future trends based on historical data</li>
+                                                        <li><strong>Anomaly Detection:</strong> Identifying unusual patterns that could indicate problems</li>
+                                                        <li><strong>Optimization:</strong> Finding the best solution among many possibilities</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card h-100 mb-3">
+                                                <div class="card-header bg-light">
+                                                    <strong>Real-World Applications</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul class="mb-0">
+                                                        <li><strong>Finance:</strong> Detecting fraudulent transactions and credit scoring</li>
+                                                        <li><strong>Retail:</strong> Inventory management and demand forecasting</li>
+                                                        <li><strong>Energy:</strong> Optimizing power grid operations and usage</li>
+                                                        <li><strong>Healthcare:</strong> Predicting disease outbreaks and resource allocation</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="topic-card">
+                                <h3>人工智能分类：不同类型的人工智能</h3>
+                                <p class="lead">探索人工智能领域内的各种专业方向，了解它们如何改变我们的世界！</p>
+                                
+                                <div class="alert alert-info p-4 mb-4">
+                                    <h4><i class="fas fa-info-circle me-2"></i>为什么我们对AI进行分类</h4>
+                                    <p>就像人类智能有不同形式（语言、逻辑、空间等），AI也发展出了专注于特定任务的专业系统。这些分类帮助研究人员聚焦于特定挑战，而许多现实世界的AI应用会结合多个类别来创建强大的工具。</p>
+                                </div>
+                                
+                                <!-- Computer Vision -->
+                                <div class="category-section mb-5">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="category-icon me-3">
+                                            <i class="fas fa-eye fa-2x text-primary"></i>
+                                        </div>
+                                        <h4 class="mb-0">计算机视觉</h4>
+                                    </div>
+                                    
+                                    <p>计算机视觉是使机器能够"看见"并解释视觉世界的AI领域，像人类一样处理和分析图像和视频。</p>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="card h-100 mb-3">
+                                                <div class="card-header bg-light">
+                                                    <strong>核心技术</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul class="mb-0">
+                                                        <li><strong>图像分类：</strong>识别图像中的物体</li>
+                                                        <li><strong>物体检测：</strong>在图像中查找和识别多个物体</li>
+                                                        <li><strong>人脸识别：</strong>从图像中识别或验证人物身份</li>
+                                                        <li><strong>场景理解：</strong>理解图像的整体上下文</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card h-100 mb-3">
+                                                <div class="card-header bg-light">
+                                                    <strong>现实应用</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul class="mb-0">
+                                                        <li><strong>医学成像：</strong>从X光和扫描中检测疾病</li>
+                                                        <li><strong>自动驾驶：</strong>帮助车辆"看见"道路和障碍物</li>
+                                                        <li><strong>零售：</strong>使用计算机视觉跟踪商品的无人收银店</li>
+                                                        <li><strong>农业：</strong>监控作物健康并优化收成</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Natural Language Processing -->
+                                <div class="category-section mb-5">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="category-icon me-3">
+                                            <i class="fas fa-comment-alt fa-2x text-primary"></i>
+                                        </div>
+                                        <h4 class="mb-0">自然语言处理 (NLP)</h4>
+                                    </div>
+                                    
+                                    <p>NLP专注于计算机与人类语言之间的交互，使机器能够以有价值的方式阅读、理解和生成人类语言。</p>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="card h-100 mb-3">
+                                                <div class="card-header bg-light">
+                                                    <strong>核心技术</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul class="mb-0">
+                                                        <li><strong>情感分析：</strong>确定文本背后的情感基调</li>
+                                                        <li><strong>机器翻译：</strong>将文本从一种语言转换为另一种语言</li>
+                                                        <li><strong>文本摘要：</strong>为较长文本创建简明摘要</li>
+                                                        <li><strong>问答系统：</strong>理解并回答人类问题</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card h-100 mb-3">
+                                                <div class="card-header bg-light">
+                                                    <strong>现实应用</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul class="mb-0">
+                                                        <li><strong>虚拟助手：</strong>如Siri、小度和小爱同学</li>
+                                                        <li><strong>客户服务：</strong>处理客户查询的AI聊天机器人</li>
+                                                        <li><strong>内容创作：</strong>AI写作助手和工具</li>
+                                                        <li><strong>社交媒体监控：</strong>跟踪品牌提及和情感</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Robotics -->
+                                <div class="category-section mb-5">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="category-icon me-3">
+                                            <i class="fas fa-robot fa-2x text-primary"></i>
+                                        </div>
+                                        <h4 class="mb-0">机器人技术中的AI</h4>
+                                    </div>
+                                    
+                                    <p>机器人AI将人工智能与机械工程相结合，创造能够在现实世界中执行物理任务的机器。</p>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="card h-100 mb-3">
+                                                <div class="card-header bg-light">
+                                                    <strong>核心技术</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul class="mb-0">
+                                                        <li><strong>运动规划：</strong>计算机器人移动的最佳路径</li>
+                                                        <li><strong>物体操作：</strong>精确控制机器人手臂和抓取装置</li>
+                                                        <li><strong>SLAM：</strong>同步定位与地图构建用于导航</li>
+                                                        <li><strong>人机交互：</strong>使机器人能够安全地与人类一起工作</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card h-100 mb-3">
+                                                <div class="card-header bg-light">
+                                                    <strong>现实应用</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul class="mb-0">
+                                                        <li><strong>制造业：</strong>能够适应变化的装配线机器人</li>
+                                                        <li><strong>医疗：</strong>协助医生进行精密手术的机器人</li>
+                                                        <li><strong>仓储：</strong>自动分拣和移动库存的系统</li>
+                                                        <li><strong>探索：</strong>调查危险或偏远环境的机器人</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- AI in Decision Making -->
+                                <div class="category-section">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="category-icon me-3">
+                                            <i class="fas fa-chart-line fa-2x text-primary"></i>
+                                        </div>
+                                        <h4 class="mb-0">决策系统与预测分析</h4>
+                                    </div>
+                                    
+                                    <p>这些AI系统分析大量数据以识别模式、进行预测并支持决策过程。</p>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="card h-100 mb-3">
+                                                <div class="card-header bg-light">
+                                                    <strong>核心技术</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul class="mb-0">
+                                                        <li><strong>推荐系统：</strong>根据偏好推荐产品或内容</li>
+                                                        <li><strong>预测分析：</strong>基于历史数据预测未来趋势</li>
+                                                        <li><strong>异常检测：</strong>识别可能表明问题的异常模式</li>
+                                                        <li><strong>优化：</strong>在众多可能性中找到最佳解决方案</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card h-100 mb-3">
+                                                <div class="card-header bg-light">
+                                                    <strong>现实应用</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul class="mb-0">
+                                                        <li><strong>金融：</strong>检测欺诈交易和信用评分</li>
+                                                        <li><strong>零售：</strong>库存管理和需求预测</li>
+                                                        <li><strong>能源：</strong>优化电网运行和使用</li>
+                                                        <li><strong>医疗：</strong>预测疾病爆发和资源分配</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- AI Creativity Content -->
+                    <div id="content-creativity" class="topic-content d-none">
+                        {% if language == 'english' %}
+                            <div class="topic-card">
+                                <h3>AI & Creativity: The New Frontier</h3>
+                                <p class="lead">Exploring how artificial intelligence is transforming art, music, writing, and design!</p>
+                                
+                                <div class="concept-image text-center mb-4">
+                                    <img src="/static/images/ai-creativity.png" alt="AI Creativity Concept" class="img-fluid rounded" style="max-width: 500px;">
+                                </div>
+                                
+                                <div class="alert alert-warning p-4 mb-4">
+                                    <h4><i class="fas fa-lightbulb me-2"></i>The Creative AI Paradox</h4>
+                                    <p>One of the most surprising developments in AI is its ability to create things that appear creative and original. This raises fascinating questions:</p>
+                                    <ul>
+                                        <li>Can a machine truly be creative, or is it just imitating human creativity?</li>
+                                        <li>Who owns the art created by AI - the developers, the users, or perhaps even the AI itself?</li>
+                                        <li>Will AI enhance human creativity or eventually replace creative professions?</li>
+                                    </ul>
+                                </div>
+                                
+                                <!-- AI in Visual Arts -->
+                                <div class="mb-5">
+                                    <h4><i class="fas fa-paint-brush me-2 text-primary"></i>AI in Visual Arts</h4>
+                                    
+                                    <div class="row mb-3">
+                                        <div class="col-md-7">
+                                            <p>AI systems can now generate stunning visual art from text descriptions, combine artistic styles, and even create entirely new images that never existed before.</p>
+                                            
+                                            <h5 class="mt-3">Major Breakthroughs:</h5>
+                                            <ul>
+                                                <li><strong>DALL-E, Midjourney & Stable Diffusion:</strong> Text-to-image models that create detailed images from descriptions</li>
+                                                <li><strong>Style Transfer:</strong> Algorithms that can redraw an image in the style of famous artists</li>
+                                                <li><strong>GAN Art:</strong> Using Generative Adversarial Networks to create original artworks</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="card">
+                                                <div class="card-header bg-light">
+                                                    <strong>Did You Know?</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p class="mb-0">In 2018, an AI-generated portrait titled "Edmond de Belamy" sold at Christie's auction house for $432,500 - though it was estimated to be worth only $7,000-$10,000!</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- AI in Music -->
+                                <div class="mb-5">
+                                    <h4><i class="fas fa-music me-2 text-primary"></i>AI in Music</h4>
+                                    
+                                    <div class="row mb-3">
+                                        <div class="col-md-7">
+                                            <p>AI systems are composing music, creating accompaniments, and even generating songs in the style of specific artists or genres.</p>
+                                            
+                                            <h5 class="mt-3">How It Works:</h5>
+                                            <p>Music generation AI analyzes patterns in thousands of songs - learning harmonies, rhythms, and structures. It can then generate new combinations that follow these musical "rules" while adding variations that sound fresh and original.</p>
+                                            
+                                            <h5 class="mt-3">Applications:</h5>
+                                            <ul>
+                                                <li>Creating royalty-free background music for videos and games</li>
+                                                <li>Assisting composers with new melodic ideas</li>
+                                                <li>Generating personalized music based on listener preferences</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="card">
+                                                <div class="card-header bg-light">
+                                                    <strong>Popular AI Music Tools</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul class="mb-0">
+                                                        <li>AIVA - Creates emotional soundtrack music</li>
+                                                        <li>Amper Music - AI composition for content creators</li>
+                                                        <li>OpenAI's Jukebox - Generates music with vocals in various styles</li>
+                                                        <li>Google's Magenta - Open source music and art generation</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- AI in Writing -->
+                                <div class="mb-5">
+                                    <h4><i class="fas fa-pen-fancy me-2 text-primary"></i>AI in Writing & Storytelling</h4>
+                                    
+                                    <p>Large language models can now write stories, poems, essays, and even code with remarkable coherence and creativity.</p>
+                                    
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <div class="card h-100">
+                                                <div class="card-header bg-light">
+                                                    <strong>Current Capabilities</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul class="mb-0">
+                                                        <li><strong>Creative Writing:</strong> Generating stories, poetry, and scripts</li>
+                                                        <li><strong>Content Creation:</strong> Writing articles, blog posts, and marketing copy</li>
+                                                        <li><strong>Interactive Fiction:</strong> Creating branching narratives for games</li>
+                                                        <li><strong>Translation & Adaptation:</strong> Converting content between languages while preserving meaning</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card h-100">
+                                                <div class="card-header bg-light">
+                                                    <strong>Limitations</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul class="mb-0">
+                                                        <li><strong>Originality:</strong> AI writing is based on patterns in existing text</li>
+                                                        <li><strong>Emotional Depth:</strong> AI doesn't truly understand human emotions</li>
+                                                        <li><strong>Factual Accuracy:</strong> Can sometimes present incorrect information confidently</li>
+                                                        <li><strong>Cultural Nuance:</strong> May miss subtle cultural contexts and implications</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- The Future of Creative AI -->
+                                <div class="mb-4">
+                                    <h4><i class="fas fa-rocket me-2 text-primary"></i>The Future of Creative AI</h4>
+                                    
+                                    <p>AI tools for creativity are evolving rapidly, with several key trends emerging:</p>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <div class="card h-100">
+                                                <div class="card-header bg-primary text-white">
+                                                    <strong>Human-AI Collaboration</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p>Rather than replacing human creators, the most powerful applications combine human creativity with AI capabilities.</p>
+                                                    <p class="mb-0">Examples include AI tools that help filmmakers with visual effects, architects with design optimization, and musicians with arrangement suggestions.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <div class="card h-100">
+                                                <div class="card-header bg-primary text-white">
+                                                    <strong>Democratization of Creation</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p>AI is making creative tools accessible to people without traditional training or technical skills.</p>
+                                                    <p class="mb-0">This could lead to a new renaissance of creative expression, with more people able to bring their ideas to life regardless of their background or formal education.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="topic-card">
+                                <h3>人工智能与创造力：新的前沿</h3>
+                                <p class="lead">探索人工智能如何改变艺术、音乐、写作和设计！</p>
+                                
+                                <div class="concept-image text-center mb-4">
+                                    <img src="/static/images/ai-creativity.png" alt="AI创造力概念" class="img-fluid rounded" style="max-width: 500px;">
+                                </div>
+                                
+                                <div class="alert alert-warning p-4 mb-4">
+                                    <h4><i class="fas fa-lightbulb me-2"></i>创造性AI的悖论</h4>
+                                    <p>AI最令人惊讶的发展之一是它能够创造出看似富有创意和原创性的作品。这引发了一些有趣的问题：</p>
+                                    <ul>
+                                        <li>机器是否真的具有创造力，还是仅仅在模仿人类的创造力？</li>
+                                        <li>AI创作的艺术品归谁所有 - 开发者、用户，还是AI本身？</li>
+                                        <li>AI会增强人类创造力，还是最终取代创意行业？</li>
+                                    </ul>
+                                </div>
+                                
+                                <!-- AI in Visual Arts -->
+                                <div class="mb-5">
+                                    <h4><i class="fas fa-paint-brush me-2 text-primary"></i>视觉艺术中的AI</h4>
+                                    
+                                    <div class="row mb-3">
+                                        <div class="col-md-7">
+                                            <p>AI系统现在可以根据文字描述生成令人惊叹的视觉艺术，结合不同的艺术风格，甚至创造出以前从未存在过的全新图像。</p>
+                                            
+                                            <h5 class="mt-3">重大突破：</h5>
+                                            <ul>
+                                                <li><strong>DALL-E、Midjourney和Stable Diffusion：</strong>文本到图像的模型，可以根据描述创建详细图像</li>
+                                                <li><strong>风格迁移：</strong>能够以著名艺术家风格重绘图像的算法</li>
+                                                <li><strong>GAN艺术：</strong>使用生成对抗网络创作原创艺术品</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="card">
+                                                <div class="card-header bg-light">
+                                                    <strong>你知道吗？</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p class="mb-0">2018年，一幅名为"埃德蒙德·德·贝拉米"的AI生成肖像在佳士得拍卖行以432,500美元售出，尽管它的估价仅为7,000-10,000美元！</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- AI in Music -->
+                                <div class="mb-5">
+                                    <h4><i class="fas fa-music me-2 text-primary"></i>音乐中的AI</h4>
+                                    
+                                    <div class="row mb-3">
+                                        <div class="col-md-7">
+                                            <p>AI系统正在创作音乐、创建伴奏，甚至以特定艺术家或流派的风格生成歌曲。</p>
+                                            
+                                            <h5 class="mt-3">工作原理：</h5>
+                                            <p>音乐生成AI分析数千首歌曲中的模式——学习和声、节奏和结构。然后，它可以生成遵循这些音乐"规则"的新组合，同时添加听起来新鲜原创的变化。</p>
+                                            
+                                            <h5 class="mt-3">应用：</h5>
+                                            <ul>
+                                                <li>为视频和游戏创作免版税背景音乐</li>
+                                                <li>帮助作曲家产生新的旋律创意</li>
+                                                <li>根据听众偏好生成个性化音乐</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="card">
+                                                <div class="card-header bg-light">
+                                                    <strong>流行AI音乐工具</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul class="mb-0">
+                                                        <li>AIVA - 创作情感配乐</li>
+                                                        <li>Amper Music - 为内容创作者提供AI作曲</li>
+                                                        <li>OpenAI的Jukebox - 以各种风格生成带有人声的音乐</li>
+                                                        <li>谷歌的Magenta - 开源音乐和艺术生成</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- AI in Writing -->
+                                <div class="mb-5">
+                                    <h4><i class="fas fa-pen-fancy me-2 text-primary"></i>写作和讲故事中的AI</h4>
+                                    
+                                    <p>大型语言模型现在可以写出故事、诗歌、文章，甚至代码，具有令人惊讶的连贯性和创造力。</p>
+                                    
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <div class="card h-100">
+                                                <div class="card-header bg-light">
+                                                    <strong>当前能力</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul class="mb-0">
+                                                        <li><strong>创意写作：</strong>生成故事、诗歌和剧本</li>
+                                                        <li><strong>内容创作：</strong>撰写文章、博客和营销文案</li>
+                                                        <li><strong>互动小说：</strong>为游戏创建分支叙事</li>
+                                                        <li><strong>翻译与改编：</strong>在保持含义的同时转换不同语言之间的内容</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card h-100">
+                                                <div class="card-header bg-light">
+                                                    <strong>局限性</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul class="mb-0">
+                                                        <li><strong>原创性：</strong>AI写作基于现有文本中的模式</li>
+                                                        <li><strong>情感深度：</strong>AI并不真正理解人类情感</li>
+                                                        <li><strong>事实准确性：</strong>有时会自信地呈现不正确的信息</li>
+                                                        <li><strong>文化细微差别：</strong>可能会错过微妙的文化背景和含义</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- The Future of Creative AI -->
+                                <div class="mb-4">
+                                    <h4><i class="fas fa-rocket me-2 text-primary"></i>创意AI的未来</h4>
+                                    
+                                    <p>创意AI工具正在快速发展，出现了几个关键趋势：</p>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <div class="card h-100">
+                                                <div class="card-header bg-primary text-white">
+                                                    <strong>人机协作</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p>与其取代人类创作者，最强大的应用结合了人类创造力与AI能力。</p>
+                                                    <p class="mb-0">例如帮助电影制作人处理视觉效果、帮助建筑师优化设计以及为音乐家提供编曲建议的AI工具。</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <div class="card h-100">
+                                                <div class="card-header bg-primary text-white">
+                                                    <strong>创作的民主化</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p>AI正在使没有传统培训或技术技能的人们也能使用创意工具。</p>
+                                                    <p class="mb-0">这可能会导致创意表达的新文艺复兴，让更多人能够将他们的想法变为现实，无论其背景或正规教育如何。</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -960,7 +1720,7 @@ document.addEventListener('DOMContentLoaded', function() {
             'intro': [
                 {
                     question: '{{ language == "english" and "What is AI?" or "什么是人工智能？" }}',
-                    options: [
+                options: [
                         '{{ language == "english" and "Technology that helps computers think and learn" or "帮助计算机思考和学习的技术" }}',
                         '{{ language == "english" and "A robot with human-like appearance" or "一个外表像人的机器人" }}',
                         '{{ language == "english" and "Software for designing graphics" or "用于设计图形的软件" }}'
