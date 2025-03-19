@@ -1,0 +1,229 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if language == 'english' %}
+        AI Explanations
+    {% else %}
+        AI解释
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-3">
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                {% if language == 'english' %}
+                    Topics
+                {% else %}
+                    主题
+                {% endif %}
+            </div>
+            <div class="list-group list-group-flush">
+                <a href="#" class="list-group-item list-group-item-action active" id="topic-machine-learning">
+                    {% if language == 'english' %}
+                        Machine Learning
+                    {% else %}
+                        机器学习
+                    {% endif %}
+                </a>
+                <a href="#" class="list-group-item list-group-item-action" id="topic-neural-networks">
+                    {% if language == 'english' %}
+                        Neural Networks
+                    {% else %}
+                        神经网络
+                    {% endif %}
+                </a>
+                <a href="#" class="list-group-item list-group-item-action" id="topic-deep-learning">
+                    {% if language == 'english' %}
+                        Deep Learning
+                    {% else %}
+                        深度学习
+                    {% endif %}
+                </a>
+                <a href="#" class="list-group-item list-group-item-action" id="topic-nlp">
+                    {% if language == 'english' %}
+                        Natural Language Processing
+                    {% else %}
+                        自然语言处理
+                    {% endif %}
+                </a>
+                <a href="#" class="list-group-item list-group-item-action" id="topic-computer-vision">
+                    {% if language == 'english' %}
+                        Computer Vision
+                    {% else %}
+                        计算机视觉
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-9">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h2 class="mb-0" id="topic-title">
+                    {% if language == 'english' %}
+                        Machine Learning
+                    {% else %}
+                        机器学习
+                    {% endif %}
+                </h2>
+                <div>
+                    <button class="btn btn-primary btn-sm" id="toggle-explanation-level">
+                        {% if level == 'simple' %}
+                            {% if language == 'english' %}
+                                Currently: Simple
+                            {% else %}
+                                当前：简易
+                            {% endif %}
+                        {% else %}
+                            {% if language == 'english' %}
+                                Currently: Normal
+                            {% else %}
+                                当前：正常
+                            {% endif %}
+                        {% endif %}
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div id="explanation-content">
+                    <!-- Machine Learning Explanation -->
+                    <div id="content-machine-learning">
+                        {% if language == 'english' %}
+                            {% if level == 'simple' %}
+                                <h3>Machine Learning (Simple Version)</h3>
+                                <p class="lead">Machine learning is how computers learn from examples!</p>
+                                
+                                <p>Think about how you learn to recognize dogs. You've seen many dogs, so now when you see a new dog, you know it's a dog, even if it looks a bit different from the dogs you've seen before. Machine learning works the same way!</p>
+                                
+                                <p>We give the computer lots of examples, like:</p>
+                                <ul>
+                                    <li>Pictures of dogs (and we tell it "these are dogs")</li>
+                                    <li>Pictures of cats (and we tell it "these are cats")</li>
+                                </ul>
+                                
+                                <p>After seeing many examples, the computer can learn to recognize new pictures of dogs and cats it has never seen before!</p>
+                                
+                                {% if role == 'teacher' %}
+                                <div class="alert alert-info mt-4">
+                                    <h4>Teacher's Note:</h4>
+                                    <p>When explaining machine learning to young students, using analogies to human learning is effective. Consider hands-on activities where students can "train" a simple classifier by sorting objects into groups.</p>
+                                </div>
+                                {% endif %}
+                                
+                            {% else %}
+                                <h3>Understanding Machine Learning</h3>
+                                <p class="lead">Machine learning is a subfield of artificial intelligence that focuses on developing algorithms and statistical models that enable computers to perform tasks without explicit instructions.</p>
+                                
+                                <p>The core concept of machine learning is to train algorithms using data, allowing the system to identify patterns and make decisions with minimal human intervention. This approach differs from traditional programming where explicit rules are defined.</p>
+                                
+                                <h4>Key Machine Learning Paradigms:</h4>
+                                <ul>
+                                    <li><strong>Supervised Learning:</strong> Models are trained on labeled data, learning to map inputs to known outputs.</li>
+                                    <li><strong>Unsupervised Learning:</strong> Models identify patterns in unlabeled data, often used for clustering and association.</li>
+                                    <li><strong>Reinforcement Learning:</strong> Models learn through interaction with an environment, receiving rewards or penalties for actions.</li>
+                                </ul>
+                                
+                                <p>Machine learning powers numerous applications in our daily lives, from recommendation systems and voice assistants to fraud detection and medical diagnostics.</p>
+                                
+                                {% if role == 'teacher' %}
+                                <div class="alert alert-info mt-4">
+                                    <h4>Teacher's Note:</h4>
+                                    <p>When teaching machine learning concepts, emphasize the distinction between traditional programming and the machine learning approach. Consider demonstrations with simple classificaton problems to illustrate how training data influences model performance.</p>
+                                </div>
+                                {% endif %}
+                            {% endif %}
+                        {% else %}
+                            {% if level == 'simple' %}
+                                <h3>机器学习（简易版）</h3>
+                                <p class="lead">机器学习是计算机从例子中学习的方式！</p>
+                                
+                                <p>想想你是如何学会识别狗的。你见过许多狗，所以现在当你看到一只新的狗时，你知道它是一只狗，即使它看起来与你之前见过的狗有所不同。机器学习的工作方式也是一样的！</p>
+                                
+                                <p>我们给计算机提供许多例子，比如：</p>
+                                <ul>
+                                    <li>狗的图片（我们告诉它"这些是狗"）</li>
+                                    <li>猫的图片（我们告诉它"这些是猫"）</li>
+                                </ul>
+                                
+                                <p>在看了许多例子之后，计算机可以学会识别它从未见过的新的狗和猫的图片！</p>
+                                
+                                {% if role == 'teacher' %}
+                                <div class="alert alert-info mt-4">
+                                    <h4>教师注释：</h4>
+                                    <p>向年轻学生解释机器学习时，使用人类学习的类比是有效的。考虑动手活动，让学生通过将物体分类到组中来"训练"一个简单的分类器。</p>
+                                </div>
+                                {% endif %}
+                                
+                            {% else %}
+                                <h3>理解机器学习</h3>
+                                <p class="lead">机器学习是人工智能的一个子领域，专注于开发算法和统计模型，使计算机能够在没有明确指令的情况下执行任务。</p>
+                                
+                                <p>机器学习的核心概念是使用数据训练算法，使系统能够识别模式并在最少人类干预的情况下做出决策。这种方法与定义明确规则的传统编程不同。</p>
+                                
+                                <h4>机器学习的关键范式：</h4>
+                                <ul>
+                                    <li><strong>监督学习：</strong>模型在标记数据上训练，学习将输入映射到已知输出。</li>
+                                    <li><strong>无监督学习：</strong>模型识别未标记数据中的模式，通常用于聚类和关联。</li>
+                                    <li><strong>强化学习：</strong>模型通过与环境互动来学习，对行动接收奖励或惩罚。</li>
+                                </ul>
+                                
+                                <p>机器学习为我们日常生活中的许多应用提供动力，从推荐系统和语音助手到欺诈检测和医疗诊断。</p>
+                                
+                                {% if role == 'teacher' %}
+                                <div class="alert alert-info mt-4">
+                                    <h4>教师注释：</h4>
+                                    <p>在教授机器学习概念时，强调传统编程和机器学习方法之间的区别。考虑使用简单的分类问题进行演示，以说明训练数据如何影响模型性能。</p>
+                                </div>
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Other topic content would be added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Topic switching
+        const topicLinks = document.querySelectorAll('.list-group-item-action');
+        const topicTitle = document.getElementById('topic-title');
+        
+        topicLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                topicLinks.forEach(l => l.classList.remove('active'));
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Update topic title
+                topicTitle.textContent = this.textContent.trim();
+                
+                // Hide all content divs
+                // In a real app, you would show/hide the appropriate content
+                // This is just a placeholder for demonstration
+                console.log(`Switching to topic: ${this.id}`);
+            });
+        });
+        
+        // Toggle explanation level button
+        const toggleButton = document.getElementById('toggle-explanation-level');
+        toggleButton.addEventListener('click', function() {
+            const currentLevel = '{{ level }}';
+            const newLevel = currentLevel === 'simple' ? 'normal' : 'simple';
+            window.location.href = "{{ url_for('set_level', level='') }}" + newLevel;
+        });
+    });
+</script>
+{% endblock %} 

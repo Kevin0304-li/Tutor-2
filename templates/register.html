@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if session.get('language', 'english') == 'english' %}
+        Register - AI Explainer
+    {% else %}
+        注册 - AI解释器
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                {% if session.get('language', 'english') == 'english' %}
+                    Register
+                {% else %}
+                    注册
+                {% endif %}
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('register') }}">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">
+                            {% if session.get('language', 'english') == 'english' %}
+                                Username
+                            {% else %}
+                                用户名
+                            {% endif %}
+                        </label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">
+                            {% if session.get('language', 'english') == 'english' %}
+                                Email
+                            {% else %}
+                                电子邮件
+                            {% endif %}
+                        </label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">
+                            {% if session.get('language', 'english') == 'english' %}
+                                Password
+                            {% else %}
+                                密码
+                            {% endif %}
+                        </label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="role" class="form-label">
+                            {% if session.get('language', 'english') == 'english' %}
+                                Role
+                            {% else %}
+                                角色
+                            {% endif %}
+                        </label>
+                        <select class="form-select" id="role" name="role">
+                            <option value="student">
+                                {% if session.get('language', 'english') == 'english' %}
+                                    Student
+                                {% else %}
+                                    学生
+                                {% endif %}
+                            </option>
+                            <option value="teacher">
+                                {% if session.get('language', 'english') == 'english' %}
+                                    Teacher
+                                {% else %}
+                                    教师
+                                {% endif %}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">
+                            {% if session.get('language', 'english') == 'english' %}
+                                Register
+                            {% else %}
+                                注册
+                            {% endif %}
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-center">
+                {% if session.get('language', 'english') == 'english' %}
+                    Already have an account? <a href="{{ url_for('login') }}">Login</a>
+                {% else %}
+                    已有账号？<a href="{{ url_for('login') }}">登录</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

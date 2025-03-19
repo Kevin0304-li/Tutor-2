@@ -1,0 +1,435 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if session.get('language', 'english') == 'english' %}
+        Community - AI Explainer
+    {% else %}
+        社区 - AI解释器
+    {% endif %}
+{% endblock %}
+
+{% block hero %}
+<div class="hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="display-4 fw-bold mb-3">
+                    {% if session.get('language', 'english') == 'english' %}
+                        AI Learning Community
+                    {% else %}
+                        AI学习社区
+                    {% endif %}
+                </h1>
+                <p class="lead mb-4">
+                    {% if session.get('language', 'english') == 'english' %}
+                        Connect with other learners, share AI insights, and help each other understand complex concepts.
+                    {% else %}
+                        与其他学习者联系，分享人工智能见解，帮助彼此理解复杂概念。
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="fw-bold text-primary mb-0">
+                    {% if session.get('language', 'english') == 'english' %}
+                        Latest Discussions
+                    {% else %}
+                        最新讨论
+                    {% endif %}
+                </h2>
+                <p class="text-muted">
+                    {% if session.get('language', 'english') == 'english' %}
+                        Join the conversation and share your insights
+                    {% else %}
+                        加入对话并分享您的见解
+                    {% endif %}
+                </p>
+            </div>
+            
+            {% if current_user.is_authenticated %}
+            <a href="{{ url_for('new_post') }}" class="btn btn-primary">
+                <i class="fas fa-plus-circle me-2"></i>
+                {% if session.get('language', 'english') == 'english' %}
+                    New Post
+                {% else %}
+                    新帖子
+                {% endif %}
+            </a>
+            {% endif %}
+        </div>
+
+        <!-- Posts -->
+        {% if posts %}
+            {% for post in posts %}
+                <div class="post-card card mb-4 animated">
+                    <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom-0 pb-0">
+                        <div class="d-flex align-items-center">
+                            <div class="avatar bg-primary d-flex align-items-center justify-content-center text-white">
+                                {{ post.author.username[0] | upper }}
+                            </div>
+                            <div>
+                                <h5 class="mb-0 fw-bold">{{ post.author.username }}</h5>
+                                <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d %H:%M') }}</small>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-light rounded-circle" type="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-flag me-2"></i> Report</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-share me-2"></i> Share</a></li>
+                                {% if current_user.is_authenticated and post.author.id == current_user.id %}
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2"></i> Edit</a></li>
+                                <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-trash-alt me-2"></i> Delete</a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="card-body pt-3">
+                        <h4 class="mb-3 fw-bold">{{ post.title }}</h4>
+                        
+                        {% if post.image_path %}
+                            <div class="mb-3 text-center">
+                                <img src="{{ url_for('static', filename=post.image_path) }}" class="img-fluid rounded post-img shadow-sm" alt="Post image for {{ post.title }}">
+                            </div>
+                        {% endif %}
+                        
+                        <p class="card-text">{{ post.content }}</p>
+                        
+                        <div class="d-flex justify-content-between align-items-center mt-4">
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-outline-primary like-button" data-post-id="{{ post.id }}">
+                                    <i class="far fa-heart me-1"></i>
+                                    {% if session.get('language', 'english') == 'english' %}
+                                        Like
+                                    {% else %}
+                                        喜欢
+                                    {% endif %}
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary comment-toggle-button" data-bs-toggle="collapse" data-bs-target="#comments-{{ post.id }}">
+                                    <i class="far fa-comment me-1"></i>
+                                    {% if session.get('language', 'english') == 'english' %}
+                                        Comments
+                                    {% else %}
+                                        评论
+                                    {% endif %}
+                                    <span class="ms-1 badge bg-secondary">{{ post.comments|length }}</span>
+                                </button>
+                            </div>
+                            <span class="badge bg-primary rounded-pill" data-post-id="{{ post.id }}">
+                                {{ post.likes }}
+                            </span>
+                        </div>
+                        
+                        <!-- Comments -->
+                        <div class="collapse mt-4" id="comments-{{ post.id }}">
+                            <div class="card card-body bg-light border-0">
+                                <h6 class="mb-3 d-flex align-items-center">
+                                    <i class="fas fa-comments me-2 text-primary"></i>
+                                    {% if session.get('language', 'english') == 'english' %}
+                                        Comments
+                                    {% else %}
+                                        评论
+                                    {% endif %}
+                                </h6>
+                                
+                                {% if post.comments %}
+                                    {% for comment in post.comments %}
+                                        <div class="comment mb-3 pb-3 border-bottom">
+                                            <div class="d-flex">
+                                                <div class="avatar bg-secondary d-flex align-items-center justify-content-center text-white">
+                                                    {{ comment.author.username[0] | upper }}
+                                                </div>
+                                                <div class="ms-2 flex-grow-1">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <strong>{{ comment.author.username }}</strong>
+                                                        <small class="text-muted">{{ comment.date_posted.strftime('%Y-%m-%d %H:%M') }}</small>
+                                                    </div>
+                                                    <p class="mb-1">{{ comment.content }}</p>
+                                                    <div>
+                                                        <button class="btn btn-sm btn-link p-0 text-muted">
+                                                            <i class="far fa-heart me-1"></i> Like
+                                                        </button>
+                                                        <button class="btn btn-sm btn-link p-0 text-muted ms-3">
+                                                            <i class="far fa-comment me-1"></i> Reply
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    <div class="text-center py-4">
+                                        <i class="far fa-comment-dots display-4 text-muted mb-3"></i>
+                                        <p class="text-muted">
+                                            {% if session.get('language', 'english') == 'english' %}
+                                                No comments yet. Be the first to share your thoughts!
+                                            {% else %}
+                                                暂无评论。成为第一个分享您想法的人！
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                {% endif %}
+                                
+                                {% if current_user.is_authenticated %}
+                                    <form class="mt-3 comment-form" action="{{ url_for('add_comment', post_id=post.id) }}" method="POST">
+                                        <div class="input-group">
+                                            <div class="avatar bg-primary d-flex align-items-center justify-content-center text-white me-2">
+                                                {{ current_user.username[0] | upper }}
+                                            </div>
+                                            <input type="text" class="form-control" name="content" placeholder="{% if session.get('language', 'english') == 'english' %}Write a comment...{% else %}写评论...{% endif %}" required>
+                                            <button class="btn btn-primary" type="submit">
+                                                <i class="fas fa-paper-plane"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                {% else %}
+                                    <div class="alert alert-info mt-3">
+                                        {% if session.get('language', 'english') == 'english' %}
+                                            <a href="{{ url_for('login') }}">Log in</a> to join the conversation
+                                        {% else %}
+                                            <a href="{{ url_for('login') }}">登录</a> 以加入对话
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="card p-5 text-center border-0 shadow-sm">
+                <i class="fas fa-comments display-1 text-muted mb-4"></i>
+                <h3 class="mb-3">
+                    {% if session.get('language', 'english') == 'english' %}
+                        No posts yet
+                    {% else %}
+                        暂无帖子
+                    {% endif %}
+                </h3>
+                <p class="text-muted mb-4">
+                    {% if session.get('language', 'english') == 'english' %}
+                        Be the first to share with the community!
+                    {% else %}
+                        成为第一个与社区分享的人！
+                    {% endif %}
+                </p>
+                {% if current_user.is_authenticated %}
+                    <div class="text-center">
+                        <a href="{{ url_for('new_post') }}" class="btn btn-primary">
+                            <i class="fas fa-plus-circle me-2"></i>
+                            {% if session.get('language', 'english') == 'english' %}
+                                Create the first post
+                            {% else %}
+                                创建第一个帖子
+                            {% endif %}
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="text-center">
+                        <a href="{{ url_for('login') }}" class="btn btn-primary">
+                            <i class="fas fa-sign-in-alt me-2"></i>
+                            {% if session.get('language', 'english') == 'english' %}
+                                Log in to post
+                            {% else %}
+                                登录以发布
+                            {% endif %}
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="card mb-4 border-0 shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <i class="fas fa-info-circle me-2"></i>
+                {% if session.get('language', 'english') == 'english' %}
+                    Community Guidelines
+                {% else %}
+                    社区指南
+                {% endif %}
+            </div>
+            <div class="card-body">
+                {% if session.get('language', 'english') == 'english' %}
+                    <p>Welcome to our AI learning community! Here you can share your thoughts, questions, and insights about AI concepts.</p>
+                    <ul class="fa-ul mb-0">
+                        <li class="mb-2"><span class="fa-li"><i class="fas fa-check-circle text-success"></i></span> Be respectful to other community members</li>
+                        <li class="mb-2"><span class="fa-li"><i class="fas fa-check-circle text-success"></i></span> Share your AI learning experiences</li>
+                        <li class="mb-2"><span class="fa-li"><i class="fas fa-check-circle text-success"></i></span> Ask questions if you need help understanding a concept</li>
+                        <li><span class="fa-li"><i class="fas fa-check-circle text-success"></i></span> Provide helpful answers when you can</li>
+                    </ul>
+                {% else %}
+                    <p>欢迎来到我们的AI学习社区！在这里您可以分享您对AI概念的想法、问题和见解。</p>
+                    <ul class="fa-ul mb-0">
+                        <li class="mb-2"><span class="fa-li"><i class="fas fa-check-circle text-success"></i></span> 尊重其他社区成员</li>
+                        <li class="mb-2"><span class="fa-li"><i class="fas fa-check-circle text-success"></i></span> 分享您的AI学习经验</li>
+                        <li class="mb-2"><span class="fa-li"><i class="fas fa-check-circle text-success"></i></span> 如果您需要帮助理解概念，请提问</li>
+                        <li><span class="fa-li"><i class="fas fa-check-circle text-success"></i></span> 在力所能及的情况下提供有帮助的回答</li>
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="card mb-4 border-0 shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <i class="fas fa-fire me-2"></i>
+                {% if session.get('language', 'english') == 'english' %}
+                    Trending Topics
+                {% else %}
+                    热门话题
+                {% endif %}
+            </div>
+            <div class="card-body p-0">
+                <div class="list-group list-group-flush">
+                    <a href="#" class="list-group-item list-group-item-action border-0 d-flex justify-content-between align-items-center p-3">
+                        <div>
+                            <i class="fas fa-robot text-primary me-2"></i>
+                            {% if session.get('language', 'english') == 'english' %}
+                                Machine Learning Basics
+                            {% else %}
+                                机器学习基础
+                            {% endif %}
+                        </div>
+                        <span class="badge bg-primary rounded-pill">14</span>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action border-0 d-flex justify-content-between align-items-center p-3">
+                        <div>
+                            <i class="fas fa-brain text-primary me-2"></i>
+                            {% if session.get('language', 'english') == 'english' %}
+                                Neural Networks
+                            {% else %}
+                                神经网络
+                            {% endif %}
+                        </div>
+                        <span class="badge bg-primary rounded-pill">8</span>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action border-0 d-flex justify-content-between align-items-center p-3">
+                        <div>
+                            <i class="fas fa-balance-scale text-primary me-2"></i>
+                            {% if session.get('language', 'english') == 'english' %}
+                                AI Ethics
+                            {% else %}
+                                AI伦理
+                            {% endif %}
+                        </div>
+                        <span class="badge bg-primary rounded-pill">6</span>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action border-0 d-flex justify-content-between align-items-center p-3">
+                        <div>
+                            <i class="fas fa-language text-primary me-2"></i>
+                            {% if session.get('language', 'english') == 'english' %}
+                                Natural Language Processing
+                            {% else %}
+                                自然语言处理
+                            {% endif %}
+                        </div>
+                        <span class="badge bg-primary rounded-pill">5</span>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action border-0 d-flex justify-content-between align-items-center p-3">
+                        <div>
+                            <i class="fas fa-eye text-primary me-2"></i>
+                            {% if session.get('language', 'english') == 'english' %}
+                                Computer Vision
+                            {% else %}
+                                计算机视觉
+                            {% endif %}
+                        </div>
+                        <span class="badge bg-primary rounded-pill">4</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <i class="fas fa-user-friends me-2"></i>
+                {% if session.get('language', 'english') == 'english' %}
+                    Active Members
+                {% else %}
+                    活跃成员
+                {% endif %}
+            </div>
+            <div class="card-body">
+                <div class="d-flex flex-wrap gap-2">
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="avatar bg-primary d-flex align-items-center justify-content-center text-white">A</div>
+                        <small>Alex</small>
+                    </div>
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="avatar bg-secondary d-flex align-items-center justify-content-center text-white">B</div>
+                        <small>Bella</small>
+                    </div>
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="avatar bg-success d-flex align-items-center justify-content-center text-white">C</div>
+                        <small>Carlos</small>
+                    </div>
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="avatar bg-danger d-flex align-items-center justify-content-center text-white">D</div>
+                        <small>Diana</small>
+                    </div>
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="avatar bg-warning d-flex align-items-center justify-content-center text-white">E</div>
+                        <small>Emma</small>
+                    </div>
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="avatar bg-info d-flex align-items-center justify-content-center text-white">F</div>
+                        <small>Frank</small>
+                    </div>
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="avatar bg-dark d-flex align-items-center justify-content-center text-white">G</div>
+                        <small>Grace</small>
+                    </div>
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="avatar bg-primary d-flex align-items-center justify-content-center text-white">H</div>
+                        <small>Henry</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Like button functionality
+        const likeButtons = document.querySelectorAll('.like-button');
+        likeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const postId = this.getAttribute('data-post-id');
+                // In a real app, this would send an AJAX request to update likes
+                
+                if (!this.classList.contains('active')) {
+                    const likeCount = document.querySelector(`.badge[data-post-id="${postId}"]`);
+                    const currentLikes = parseInt(likeCount.textContent);
+                    likeCount.textContent = (currentLikes + 1);
+                    
+                    // Update button style
+                    this.classList.add('active');
+                    this.innerHTML = '<i class="fas fa-heart me-1"></i> Liked';
+                    
+                    // Animate the like count
+                    likeCount.classList.add('animate__animated', 'animate__heartBeat');
+                    setTimeout(() => {
+                        likeCount.classList.remove('animate__animated', 'animate__heartBeat');
+                    }, 1000);
+                }
+            });
+        });
+    });
+</script>
+{% endblock %} 

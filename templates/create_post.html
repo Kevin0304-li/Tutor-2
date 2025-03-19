@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if session.get('language', 'english') == 'english' %}
+        Create New Post - AI Explainer
+    {% else %}
+        创建新帖子 - AI解释器
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <i class="fas fa-pen-fancy me-2"></i>
+                {% if session.get('language', 'english') == 'english' %}
+                    Create New Post
+                {% else %}
+                    创建新帖子
+                {% endif %}
+            </div>
+            <div class="card-body p-4">
+                <form method="POST" action="{{ url_for('new_post') }}" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">
+                            {% if session.get('language', 'english') == 'english' %}
+                                Title
+                            {% else %}
+                                标题
+                            {% endif %}
+                        </label>
+                        <input type="text" class="form-control" id="title" name="title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="content" class="form-label">
+                            {% if session.get('language', 'english') == 'english' %}
+                                Content
+                            {% else %}
+                                内容
+                            {% endif %}
+                        </label>
+                        <textarea class="form-control" id="content" name="content" rows="6" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label">
+                            {% if session.get('language', 'english') == 'english' %}
+                                Image (optional)
+                            {% else %}
+                                图片（可选）
+                            {% endif %}
+                        </label>
+                        <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                        <div class="mt-2">
+                            <div id="image-preview" class="mt-2 d-none">
+                                <img id="preview-img" class="img-fluid rounded" style="max-height: 200px;" alt="Image preview">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">
+                            {% if session.get('language', 'english') == 'english' %}
+                                Post
+                            {% else %}
+                                发布
+                            {% endif %}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Image preview functionality
+        const imageInput = document.getElementById('image');
+        const imagePreview = document.getElementById('image-preview');
+        const previewImg = document.getElementById('preview-img');
+        
+        imageInput.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    previewImg.src = e.target.result;
+                    imagePreview.classList.remove('d-none');
+                }
+                
+                reader.readAsDataURL(this.files[0]);
+            } else {
+                imagePreview.classList.add('d-none');
+            }
+        });
+    });
+</script>
+{% endblock %} 

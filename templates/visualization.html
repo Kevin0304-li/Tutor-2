@@ -1,0 +1,501 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if session.get('language', 'english') == 'english' %}
+        Visualizations - AI Explainer
+    {% else %}
+        可视化 - AI解释器
+    {% endif %}
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .visualization-card {
+        margin-bottom: 30px;
+    }
+    .chart-container {
+        position: relative;
+        height: 300px;
+        width: 100%;
+    }
+    
+    /* Neural Network CSS Visualization */
+    .neural-network-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 200px;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 400px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .nn-layer {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 100%;
+        z-index: 2;
+    }
+    
+    .nn-node {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 30% 30%, #4a7bff, #3150b3);
+        box-shadow: 0 0 10px rgba(74, 123, 255, 0.7);
+        position: relative;
+    }
+    
+    /* Connections between nodes (using pseudo-elements) */
+    .neural-network-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+            repeating-linear-gradient(90deg, 
+                transparent, transparent 28%, 
+                rgba(74, 123, 255, 0.2) 28%, rgba(74, 123, 255, 0.2) 31%,
+                transparent 31%, transparent 61%,
+                rgba(74, 123, 255, 0.2) 61%, rgba(74, 123, 255, 0.2) 64%,
+                transparent 64%, transparent 100%),
+            repeating-linear-gradient(120deg, 
+                transparent, transparent 40%, 
+                rgba(74, 123, 255, 0.1) 40%, rgba(74, 123, 255, 0.1) 41%,
+                transparent 41%, transparent 70%,
+                rgba(74, 123, 255, 0.1) 70%, rgba(74, 123, 255, 0.1) 71%,
+                transparent 71%, transparent 100%),
+            repeating-linear-gradient(60deg, 
+                transparent, transparent 40%, 
+                rgba(74, 123, 255, 0.1) 40%, rgba(74, 123, 255, 0.1) 41%,
+                transparent 41%, transparent 70%,
+                rgba(74, 123, 255, 0.1) 70%, rgba(74, 123, 255, 0.1) 71%,
+                transparent 71%, transparent 100%);
+        z-index: 1;
+    }
+    
+    .neuralnet-img {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+    
+    .neuralnet-img:hover {
+        transform: scale(1.05);
+    }
+    
+    /* Animation for nodes */
+    @keyframes pulse {
+        0% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.1); opacity: 0.8; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+    
+    .nn-node {
+        animation: pulse 2s infinite ease-in-out;
+    }
+    
+    .input-layer .nn-node:nth-child(1) { animation-delay: 0s; }
+    .input-layer .nn-node:nth-child(2) { animation-delay: 0.5s; }
+    .input-layer .nn-node:nth-child(3) { animation-delay: 1s; }
+    .input-layer .nn-node:nth-child(4) { animation-delay: 1.5s; }
+    
+    .hidden-layer .nn-node:nth-child(1) { animation-delay: 0.3s; }
+    .hidden-layer .nn-node:nth-child(2) { animation-delay: 0.8s; }
+    .hidden-layer .nn-node:nth-child(3) { animation-delay: 1.3s; }
+    
+    .output-layer .nn-node:nth-child(1) { animation-delay: 0.6s; }
+    .output-layer .nn-node:nth-child(2) { animation-delay: 1.1s; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="mb-4">
+            {% if session.get('language', 'english') == 'english' %}
+                AI Visualizations
+            {% else %}
+                AI可视化
+            {% endif %}
+        </h1>
+        
+        <div class="row">
+            <!-- Neural Network Visualization -->
+            <div class="col-md-6">
+                <div class="card visualization-card">
+                    <div class="card-header bg-primary text-white">
+                        {% if session.get('language', 'english') == 'english' %}
+                            Neural Network Structure
+                        {% else %}
+                            神经网络结构
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container text-center mb-3">
+                            <!-- Using the existing AI brain image -->
+                            <img src="{{ url_for('static', filename='uploads/ai_brain.png') }}" class="img-fluid rounded neuralnet-img" alt="Neural Network Visualization" style="max-height: 250px;">
+                            <!-- Neural Network custom CSS visualization -->
+                            <div class="neural-network-container mt-4">
+                                <div class="nn-layer input-layer">
+                                    <div class="nn-node"></div>
+                                    <div class="nn-node"></div>
+                                    <div class="nn-node"></div>
+                                    <div class="nn-node"></div>
+                                </div>
+                                <div class="nn-layer hidden-layer">
+                                    <div class="nn-node"></div>
+                                    <div class="nn-node"></div>
+                                    <div class="nn-node"></div>
+                                </div>
+                                <div class="nn-layer output-layer">
+                                    <div class="nn-node"></div>
+                                    <div class="nn-node"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            {% if session.get('language', 'english') == 'english' %}
+                                <p>This visualization shows a simple neural network with input, hidden, and output layers. The connections between neurons represent weights that are adjusted during training.</p>
+                            {% else %}
+                                <p>此可视化显示了一个简单的神经网络，包含输入层、隐藏层和输出层。神经元之间的连接表示在训练过程中调整的权重。</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Training Accuracy Visualization -->
+            <div class="col-md-6">
+                <div class="card visualization-card">
+                    <div class="card-header bg-primary text-white">
+                        {% if session.get('language', 'english') == 'english' %}
+                            Model Training Progress
+                        {% else %}
+                            模型训练进度
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="trainingChart"></canvas>
+                        </div>
+                        <div class="mt-3">
+                            {% if session.get('language', 'english') == 'english' %}
+                                <p>This chart shows how model accuracy and loss change over training epochs. Notice how accuracy increases while loss decreases as the model learns from the training data.</p>
+                            {% else %}
+                                <p>此图表显示模型准确率和损失如何随着训练周期变化。注意随着模型从训练数据中学习，准确率如何增加而损失如何减少。</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Classification Visualization -->
+            <div class="col-md-6">
+                <div class="card visualization-card">
+                    <div class="card-header bg-primary text-white">
+                        {% if session.get('language', 'english') == 'english' %}
+                            Classification Results
+                        {% else %}
+                            分类结果
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="classificationChart"></canvas>
+                        </div>
+                        <div class="mt-3">
+                            {% if session.get('language', 'english') == 'english' %}
+                                <p>This visualization shows the distribution of predictions across different classes. It helps understand how well the model distinguishes between categories.</p>
+                            {% else %}
+                                <p>此可视化显示了不同类别之间预测的分布。它有助于理解模型如何区分不同类别。</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Decision Boundary Visualization -->
+            <div class="col-md-6">
+                <div class="card visualization-card">
+                    <div class="card-header bg-primary text-white">
+                        {% if session.get('language', 'english') == 'english' %}
+                            Decision Boundaries
+                        {% else %}
+                            决策边界
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="decisionBoundaryChart"></canvas>
+                        </div>
+                        <div class="mt-3">
+                            {% if session.get('language', 'english') == 'english' %}
+                                <p>This chart illustrates how a classifier creates decision boundaries to separate different classes in a feature space. Points on different sides of a boundary are classified differently.</p>
+                            {% else %}
+                                <p>此图表说明了分类器如何创建决策边界以在特征空间中分隔不同的类别。边界不同侧的点被分类为不同类别。</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Training progress chart
+        const trainingCtx = document.getElementById('trainingChart').getContext('2d');
+        const trainingChart = new Chart(trainingCtx, {
+            type: 'line',
+            data: {
+                labels: ['Epoch 1', 'Epoch 2', 'Epoch 3', 'Epoch 4', 'Epoch 5', 'Epoch 6', 'Epoch 7', 'Epoch 8', 'Epoch 9', 'Epoch 10'],
+                datasets: [
+                    {
+                        label: 'Accuracy',
+                        data: [0.45, 0.55, 0.65, 0.7, 0.75, 0.78, 0.82, 0.85, 0.87, 0.89],
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        tension: 0.1,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: 'Loss',
+                        data: [2.3, 1.9, 1.5, 1.3, 1.1, 0.9, 0.7, 0.5, 0.4, 0.3],
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        tension: 0.1,
+                        yAxisID: 'y1'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 1,
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'Accuracy'
+                        }
+                    },
+                    y1: {
+                        beginAtZero: true,
+                        max: 3,
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        title: {
+                            display: true,
+                            text: 'Loss'
+                        },
+                        grid: {
+                            drawOnChartArea: false
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Classification results chart
+        const classificationCtx = document.getElementById('classificationChart').getContext('2d');
+        const classificationChart = new Chart(classificationCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Class A', 'Class B', 'Class C', 'Class D', 'Class E'],
+                datasets: [{
+                    label: 'Predictions',
+                    data: [125, 85, 90, 110, 70],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.5)',
+                        'rgba(54, 162, 235, 0.5)',
+                        'rgba(255, 206, 86, 0.5)',
+                        'rgba(75, 192, 192, 0.5)',
+                        'rgba(153, 102, 255, 0.5)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Number of Predictions'
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Neural Network chart (simplified representation)
+        const neuralNetworkCtx = document.getElementById('neuralNetworkChart').getContext('2d');
+        const neuralNetworkChart = new Chart(neuralNetworkCtx, {
+            type: 'scatter',
+            data: {
+                datasets: [
+                    // Input layer
+                    {
+                        label: 'Input Layer',
+                        data: [
+                            {x: 1, y: 1}, {x: 1, y: 2}, {x: 1, y: 3}, {x: 1, y: 4}
+                        ],
+                        backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                        pointRadius: 10
+                    },
+                    // Hidden layer 1
+                    {
+                        label: 'Hidden Layer',
+                        data: [
+                            {x: 3, y: 1.5}, {x: 3, y: 2.5}, {x: 3, y: 3.5}
+                        ],
+                        backgroundColor: 'rgba(255, 206, 86, 0.7)',
+                        pointRadius: 10
+                    },
+                    // Output layer
+                    {
+                        label: 'Output Layer',
+                        data: [
+                            {x: 5, y: 2}, {x: 5, y: 3}
+                        ],
+                        backgroundColor: 'rgba(75, 192, 192, 0.7)',
+                        pointRadius: 10
+                    },
+                    // Lines representing connections (simplified)
+                    {
+                        label: 'Connections',
+                        data: [],
+                        showLine: true,
+                        pointRadius: 0,
+                        borderColor: 'rgba(200, 200, 200, 0.3)'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        min: 0,
+                        max: 6,
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        min: 0,
+                        max: 5,
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            display: false
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+        
+        // Decision boundary chart (simplified representation)
+        const decisionBoundaryCtx = document.getElementById('decisionBoundaryChart').getContext('2d');
+        const decisionBoundaryChart = new Chart(decisionBoundaryCtx, {
+            type: 'scatter',
+            data: {
+                datasets: [
+                    // Class A points
+                    {
+                        label: 'Class A',
+                        data: [
+                            {x: 1, y: 1}, {x: 1.5, y: 2}, {x: 2, y: 1.5}, {x: 2.5, y: 2.2}, {x: 1.8, y: 1.2},
+                            {x: 2.2, y: 2.8}, {x: 1.3, y: 2.5}, {x: 2.7, y: 1.8}, {x: 1.9, y: 1.7}
+                        ],
+                        backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                        pointRadius: 6
+                    },
+                    // Class B points
+                    {
+                        label: 'Class B',
+                        data: [
+                            {x: 3.5, y: 3}, {x: 4, y: 3.5}, {x: 3.8, y: 2.8}, {x: 4.2, y: 3.2}, {x: 3.2, y: 3.3},
+                            {x: 4.4, y: 2.9}, {x: 3.9, y: 3.8}, {x: 4.5, y: 3.5}, {x: 3.6, y: 3.4}
+                        ],
+                        backgroundColor: 'rgba(255, 99, 132, 0.7)',
+                        pointRadius: 6
+                    },
+                    // Decision boundary (approximation)
+                    {
+                        label: 'Decision Boundary',
+                        data: [
+                            {x: 0.5, y: 4.5}, {x: 3, y: 2}, {x: 5, y: 1}
+                        ],
+                        showLine: true,
+                        fill: false,
+                        borderColor: 'rgba(0, 0, 0, 0.7)',
+                        borderWidth: 2,
+                        pointRadius: 0
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        min: 0,
+                        max: 5,
+                        title: {
+                            display: true,
+                            text: 'Feature 1'
+                        }
+                    },
+                    y: {
+                        min: 0,
+                        max: 5,
+                        title: {
+                            display: true,
+                            text: 'Feature 2'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+    });
+</script>
+{% endblock %} 
