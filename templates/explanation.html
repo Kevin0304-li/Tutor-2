@@ -11,219 +11,1258 @@
 {% block content %}
 <div class="row">
     <div class="col-md-3">
-        <div class="card mb-4">
-            <div class="card-header bg-primary text-white">
+        <!-- Topics Sidebar -->
+        <div class="card mb-4 sticky-top" style="top: 2rem; z-index: 100;">
+            <div class="card-header bg-primary text-white d-flex align-items-center">
+                <i class="fas fa-book-open me-2"></i>
                 {% if language == 'english' %}
-                    Topics
+                    Learning Path
                 {% else %}
-                    主题
+                    学习路径
                 {% endif %}
             </div>
             <div class="list-group list-group-flush">
-                <a href="#" class="list-group-item list-group-item-action active" id="topic-machine-learning">
-                    {% if language == 'english' %}
-                        Machine Learning
-                    {% else %}
-                        机器学习
-                    {% endif %}
-                </a>
-                <a href="#" class="list-group-item list-group-item-action" id="topic-neural-networks">
-                    {% if language == 'english' %}
-                        Neural Networks
-                    {% else %}
-                        神经网络
-                    {% endif %}
-                </a>
-                <a href="#" class="list-group-item list-group-item-action" id="topic-deep-learning">
-                    {% if language == 'english' %}
-                        Deep Learning
-                    {% else %}
-                        深度学习
-                    {% endif %}
-                </a>
-                <a href="#" class="list-group-item list-group-item-action" id="topic-nlp">
-                    {% if language == 'english' %}
-                        Natural Language Processing
-                    {% else %}
-                        自然语言处理
-                    {% endif %}
-                </a>
-                <a href="#" class="list-group-item list-group-item-action" id="topic-computer-vision">
-                    {% if language == 'english' %}
-                        Computer Vision
-                    {% else %}
-                        计算机视觉
-                    {% endif %}
-                </a>
+                <!-- Introduction to AI -->
+                <div class="topic-progress">
+                    <a href="#" class="list-group-item list-group-item-action active" id="topic-intro">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="fas fa-robot me-2"></i>
+                                {% if language == 'english' %}
+                                    What is AI?
+                                {% else %}
+                                    什么是人工智能？
+                                {% endif %}
+                            </div>
+                            <span class="badge bg-primary rounded-pill">0%</span>
+                        </div>
+                        <div class="progress-indicator mt-2">
+                            <div class="progress-bar" style="width: 0%"></div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- AI History -->
+                <div class="topic-progress">
+                    <a href="#" class="list-group-item list-group-item-action" id="topic-history">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="fas fa-history me-2"></i>
+                                {% if language == 'english' %}
+                                    History of AI
+                                {% else %}
+                                    人工智能的历史
+                                {% endif %}
+                            </div>
+                            <span class="badge bg-primary rounded-pill">0%</span>
+                        </div>
+                        <div class="progress-indicator mt-2">
+                            <div class="progress-bar" style="width: 0%"></div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- AI Applications -->
+                <div class="topic-progress">
+                    <a href="#" class="list-group-item list-group-item-action" id="topic-applications">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="fas fa-cogs me-2"></i>
+                                {% if language == 'english' %}
+                                    AI in Daily Life
+                                {% else %}
+                                    日常生活中的人工智能
+                                {% endif %}
+                            </div>
+                            <span class="badge bg-primary rounded-pill">0%</span>
+                        </div>
+                        <div class="progress-indicator mt-2">
+                            <div class="progress-bar" style="width: 0%"></div>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
     
     <div class="col-md-9">
+        <!-- Main Content Area -->
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h2 class="mb-0" id="topic-title">
-                    {% if language == 'english' %}
-                        Machine Learning
-                    {% else %}
-                        机器学习
-                    {% endif %}
-                </h2>
                 <div>
-                    <button class="btn btn-primary btn-sm" id="toggle-explanation-level">
+                    <h2 class="mb-0" id="topic-title">
+                        {% if language == 'english' %}
+                            What is Artificial Intelligence?
+                        {% else %}
+                            什么是人工智能？
+                        {% endif %}
+                    </h2>
+                    <div class="mt-2">
+                        <span class="difficulty-badge difficulty-beginner">
+                            <i class="fas fa-signal-1"></i>
+                            {% if language == 'english' %}Beginner{% else %}初级{% endif %}
+                        </span>
+                        <span class="ms-2 text-muted">
+                            <i class="far fa-clock me-1"></i>
+                            {% if language == 'english' %}10 min{% else %}10分钟{% endif %}
+                        </span>
+                    </div>
+                </div>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-outline-primary btn-sm" id="toggle-explanation-level">
+                        <i class="fas fa-layer-group me-1"></i>
                         {% if level == 'simple' %}
                             {% if language == 'english' %}
-                                Currently: Simple
+                                Simple Mode
                             {% else %}
-                                当前：简易
+                                简易模式
                             {% endif %}
                         {% else %}
                             {% if language == 'english' %}
-                                Currently: Normal
+                                Normal Mode
                             {% else %}
-                                当前：正常
+                                正常模式
                             {% endif %}
                         {% endif %}
                     </button>
+                    <button class="btn btn-primary btn-sm" id="start-quiz">
+                        <i class="fas fa-question-circle me-1"></i>
+                        {% if language == 'english' %}Take Quiz{% else %}开始测验{% endif %}
+                    </button>
                 </div>
             </div>
+            
             <div class="card-body">
                 <div id="explanation-content">
-                    <!-- Machine Learning Explanation -->
-                    <div id="content-machine-learning">
+                    <!-- What is AI Content -->
+                    <div id="content-intro" class="topic-content active">
                         {% if language == 'english' %}
-                            {% if level == 'simple' %}
-                                <h3>Machine Learning (Simple Version)</h3>
-                                <p class="lead">Machine learning is how computers learn from examples!</p>
+                            <div class="topic-card">
+                                <h3>Understanding Artificial Intelligence</h3>
+                                <p class="lead">Artificial Intelligence (AI) is technology that helps computers think and learn like humans!</p>
                                 
-                                <p>Think about how you learn to recognize dogs. You've seen many dogs, so now when you see a new dog, you know it's a dog, even if it looks a bit different from the dogs you've seen before. Machine learning works the same way!</p>
+                                <div class="concept-image text-center mb-4">
+                                    <img src="/static/images/ai-concept.png" alt="AI Concept" class="img-fluid rounded" style="max-width: 400px;">
+                                </div>
                                 
-                                <p>We give the computer lots of examples, like:</p>
-                                <ul>
-                                    <li>Pictures of dogs (and we tell it "these are dogs")</li>
-                                    <li>Pictures of cats (and we tell it "these are cats")</li>
+                                <div class="alert alert-info p-4 mb-4">
+                                    <h4><i class="fas fa-lightbulb me-2"></i>What AI Really Does</h4>
+                                    <p>Imagine you have a big box of colorful LEGO blocks. Some are red, some are blue, and some are yellow.</p>
+                                    <p>AI is like a friend who looks at all your LEGO blocks and notices things like:</p>
+                                    <ul>
+                                        <li>"Oh! All the red blocks are square!"</li>
+                                        <li>"The blue blocks are always next to yellow blocks!"</li>
+                                    </ul>
+                                    <p>AI doesn't really "think" or "learn" like people do. Instead, it's very good at finding patterns in lots of information. When we say AI "learns," it really means it finds these patterns and uses them to make guesses about new things it sees.</p>
+                                    <p>So when your tablet suggests a game you might like, it's because the AI found a pattern: "Kids who like game A usually also like game B!"</p>
+                                </div>
+                                
+                                <h4>Key Ideas About AI</h4>
+                                <ul class="concept-list">
+                                    <li>
+                                        <i class="fas fa-brain"></i>
+                                        <div>
+                                            <strong>Smart Computers</strong>
+                                            <p class="mb-0">AI systems can understand, learn, and solve problems like humans do.</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-robot"></i>
+                                        <div>
+                                            <strong>Different from Regular Programs</strong>
+                                            <p class="mb-0">Unlike normal computer programs that just follow rules, AI can learn and improve over time!</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-magic"></i>
+                                        <div>
+                                            <strong>Helpful Technology</strong>
+                                            <p class="mb-0">AI helps us with many tasks, from recommending movies to driving cars.</p>
+                                        </div>
+                                    </li>
                                 </ul>
                                 
-                                <p>After seeing many examples, the computer can learn to recognize new pictures of dogs and cats it has never seen before!</p>
-                                
-                                {% if role == 'teacher' %}
-                                <div class="alert alert-info mt-4">
-                                    <h4>Teacher's Note:</h4>
-                                    <p>When explaining machine learning to young students, using analogies to human learning is effective. Consider hands-on activities where students can "train" a simple classifier by sorting objects into groups.</p>
+                                <div class="mt-4">
+                                    <h4><i class="fas fa-puzzle-piece me-2"></i>How AI Actually Works</h4>
+                                    <p>Behind the scenes, AI systems use several important techniques to function:</p>
+                                    
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-light">
+                                            <strong>1. Machine Learning</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <p>The most common type of AI today. Instead of being programmed with specific rules, the computer is trained with lots of examples.</p>
+                                            <p class="mb-0"><strong>Example:</strong> To recognize cats in photos, an AI might look at thousands of cat pictures until it learns what makes a cat look like a cat!</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-light">
+                                            <strong>2. Neural Networks</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <p>Special computer systems designed to work a bit like a human brain, with interconnected "neurons" that process information in layers.</p>
+                                            <p class="mb-0">Each layer detects different features - from simple edges and colors to complex objects and concepts.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-light">
+                                            <strong>3. Deep Learning</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <p>A more advanced form of machine learning using many layers of neural networks, allowing AI to handle very complex tasks.</p>
+                                            <p class="mb-0"><strong>Applications:</strong> Speech recognition, language translation, and self-driving cars all use deep learning.</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                {% endif %}
-                                
-                            {% else %}
-                                <h3>Understanding Machine Learning</h3>
-                                <p class="lead">Machine learning is a subfield of artificial intelligence that focuses on developing algorithms and statistical models that enable computers to perform tasks without explicit instructions.</p>
-                                
-                                <p>The core concept of machine learning is to train algorithms using data, allowing the system to identify patterns and make decisions with minimal human intervention. This approach differs from traditional programming where explicit rules are defined.</p>
-                                
-                                <h4>Key Machine Learning Paradigms:</h4>
-                                <ul>
-                                    <li><strong>Supervised Learning:</strong> Models are trained on labeled data, learning to map inputs to known outputs.</li>
-                                    <li><strong>Unsupervised Learning:</strong> Models identify patterns in unlabeled data, often used for clustering and association.</li>
-                                    <li><strong>Reinforcement Learning:</strong> Models learn through interaction with an environment, receiving rewards or penalties for actions.</li>
-                                </ul>
-                                
-                                <p>Machine learning powers numerous applications in our daily lives, from recommendation systems and voice assistants to fraud detection and medical diagnostics.</p>
-                                
-                                {% if role == 'teacher' %}
-                                <div class="alert alert-info mt-4">
-                                    <h4>Teacher's Note:</h4>
-                                    <p>When teaching machine learning concepts, emphasize the distinction between traditional programming and the machine learning approach. Consider demonstrations with simple classificaton problems to illustrate how training data influences model performance.</p>
-                                </div>
-                                {% endif %}
-                            {% endif %}
+                            </div>
                         {% else %}
-                            {% if level == 'simple' %}
-                                <h3>机器学习（简易版）</h3>
-                                <p class="lead">机器学习是计算机从例子中学习的方式！</p>
+                            <div class="topic-card">
+                                <h3>理解人工智能</h3>
+                                <p class="lead">人工智能（AI）是帮助计算机像人类一样思考和学习的技术！</p>
                                 
-                                <p>想想你是如何学会识别狗的。你见过许多狗，所以现在当你看到一只新的狗时，你知道它是一只狗，即使它看起来与你之前见过的狗有所不同。机器学习的工作方式也是一样的！</p>
+                                <div class="concept-image text-center mb-4">
+                                    <img src="/static/images/ai-concept.png" alt="AI概念" class="img-fluid rounded" style="max-width: 400px;">
+                                </div>
                                 
-                                <p>我们给计算机提供许多例子，比如：</p>
-                                <ul>
-                                    <li>狗的图片（我们告诉它"这些是狗"）</li>
-                                    <li>猫的图片（我们告诉它"这些是猫"）</li>
+                                <div class="alert alert-info p-4 mb-4">
+                                    <h4><i class="fas fa-lightbulb me-2"></i>人工智能实际上是做什么的</h4>
+                                    <p>想象一下，你有一大盒彩色的乐高积木。有些是红色的，有些是蓝色的，有些是黄色的。</p>
+                                    <p>人工智能就像一个朋友，他看着你所有的乐高积木并注意到一些事情，比如：</p>
+                                    <ul>
+                                        <li>"哦！所有的红色积木都是方形的！"</li>
+                                        <li>"蓝色积木总是在黄色积木旁边！"</li>
+                                    </ul>
+                                    <p>人工智能并不是真的像人一样"思考"或"学习"。相反，它非常擅长在大量信息中找到规律。当我们说AI"学习"时，实际上是指它找到这些规律，并用它们来预测它看到的新事物。</p>
+                                    <p>所以当你的平板电脑推荐你可能喜欢的游戏时，这是因为AI发现了一个规律："喜欢游戏A的孩子通常也喜欢游戏B！"</p>
+                                </div>
+                                
+                                <h4>关于AI的主要概念</h4>
+                                <ul class="concept-list">
+                                    <li>
+                                        <i class="fas fa-brain"></i>
+                                        <div>
+                                            <strong>智能计算机</strong>
+                                            <p class="mb-0">AI系统可以像人类一样理解、学习和解决问题。</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-robot"></i>
+                                        <div>
+                                            <strong>与普通程序不同</strong>
+                                            <p class="mb-0">与只是遵循固定规则的普通计算机程序不同，AI能够随着时间自我学习和进步！</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-magic"></i>
+                                        <div>
+                                            <strong>有用的技术</strong>
+                                            <p class="mb-0">AI帮助我们完成许多任务，从推荐电影到驾驶汽车。</p>
+                                        </div>
+                                    </li>
                                 </ul>
                                 
-                                <p>在看了许多例子之后，计算机可以学会识别它从未见过的新的狗和猫的图片！</p>
-                                
-                                {% if role == 'teacher' %}
-                                <div class="alert alert-info mt-4">
-                                    <h4>教师注释：</h4>
-                                    <p>向年轻学生解释机器学习时，使用人类学习的类比是有效的。考虑动手活动，让学生通过将物体分类到组中来"训练"一个简单的分类器。</p>
+                                <div class="mt-4">
+                                    <h4><i class="fas fa-puzzle-piece me-2"></i>人工智能实际如何工作</h4>
+                                    <p>在幕后，人工智能系统使用几种重要技术来运作：</p>
+                                    
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-light">
+                                            <strong>1. 机器学习</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <p>当今最常见的AI类型。计算机不是按照特定规则编程，而是通过大量示例进行训练。</p>
+                                            <p class="mb-0"><strong>示例：</strong>为了识别照片中的猫，AI可能会查看数千张猫的图片，直到它学会猫的特征！</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-light">
+                                            <strong>2. 神经网络</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <p>一种特殊的计算机系统，设计为类似人脑工作，具有相互连接的"神经元"，分层处理信息。</p>
+                                            <p class="mb-0">每一层检测不同的特征 - 从简单的边缘和颜色到复杂的物体和概念。</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-light">
+                                            <strong>3. 深度学习</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <p>使用多层神经网络的更高级机器学习形式，使AI能够处理非常复杂的任务。</p>
+                                            <p class="mb-0"><strong>应用：</strong>语音识别、语言翻译和自动驾驶汽车都使用深度学习技术。</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                {% endif %}
-                                
-                            {% else %}
-                                <h3>理解机器学习</h3>
-                                <p class="lead">机器学习是人工智能的一个子领域，专注于开发算法和统计模型，使计算机能够在没有明确指令的情况下执行任务。</p>
-                                
-                                <p>机器学习的核心概念是使用数据训练算法，使系统能够识别模式并在最少人类干预的情况下做出决策。这种方法与定义明确规则的传统编程不同。</p>
-                                
-                                <h4>机器学习的关键范式：</h4>
-                                <ul>
-                                    <li><strong>监督学习：</strong>模型在标记数据上训练，学习将输入映射到已知输出。</li>
-                                    <li><strong>无监督学习：</strong>模型识别未标记数据中的模式，通常用于聚类和关联。</li>
-                                    <li><strong>强化学习：</strong>模型通过与环境互动来学习，对行动接收奖励或惩罚。</li>
-                                </ul>
-                                
-                                <p>机器学习为我们日常生活中的许多应用提供动力，从推荐系统和语音助手到欺诈检测和医疗诊断。</p>
-                                
-                                {% if role == 'teacher' %}
-                                <div class="alert alert-info mt-4">
-                                    <h4>教师注释：</h4>
-                                    <p>在教授机器学习概念时，强调传统编程和机器学习方法之间的区别。考虑使用简单的分类问题进行演示，以说明训练数据如何影响模型性能。</p>
-                                </div>
-                                {% endif %}
-                            {% endif %}
+                            </div>
                         {% endif %}
                     </div>
-                    
-                    <!-- Other topic content would be added here -->
+
+                    <!-- AI History Content -->
+                    <div id="content-history" class="topic-content d-none">
+                        {% if language == 'english' %}
+                            <div class="topic-card">
+                                <h3>The Journey of Artificial Intelligence</h3>
+                                <p class="lead">From science fiction to reality: How AI has evolved over time!</p>
+                                
+                                <div class="timeline mb-4">
+                                    <div class="timeline-item">
+                                        <div class="timeline-marker">1950s</div>
+                                        <div class="timeline-content">
+                                            <h5>The Birth of AI</h5>
+                                            <p>Scientists started thinking about making smart machines. Alan Turing created the famous "Turing Test" to check if computers could think like humans.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="timeline-item">
+                                        <div class="timeline-marker">1960s-70s</div>
+                                        <div class="timeline-content">
+                                            <h5>First AI Programs</h5>
+                                            <p>Early computers learned to solve math problems and play simple games like checkers.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="timeline-item">
+                                        <div class="timeline-marker">1990s-2000s</div>
+                                        <div class="timeline-content">
+                                            <h5>AI Gets Stronger</h5>
+                                            <p>Computers became powerful enough to beat chess champions and recognize speech!</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="timeline-item">
+                                        <div class="timeline-marker">Today</div>
+                                        <div class="timeline-content">
+                                            <h5>AI Everywhere</h5>
+                                            <p>AI helps us with daily tasks like navigation, shopping recommendations, and even creating art!</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-4">
+                                    <h4><i class="fas fa-landmark me-2"></i>Key Historical Milestones</h4>
+                                    
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-light">
+                                            <strong>The Dartmouth Conference (1956)</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <p>Often considered the official birth of AI as a field. A group of scientists proposed that "every aspect of learning or any other feature of intelligence can be so precisely described that a machine can be made to simulate it."</p>
+                                            <p class="mb-0">This summer workshop coined the term "Artificial Intelligence" and set the foundation for future research.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-light">
+                                            <strong>Early AI Programs (1950s-1960s)</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="mb-0">
+                                                <li><strong>Logic Theorist (1955):</strong> The first AI program, capable of proving mathematical theorems.</li>
+                                                <li><strong>ELIZA (1966):</strong> An early chatbot that could mimic human conversation by pattern matching.</li>
+                                                <li><strong>SHRDLU (1970):</strong> Program that could understand natural language instructions in a simple block world.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-light">
+                                            <strong>The AI Winter Periods</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <p>AI research has gone through cycles of extreme optimism followed by disappointment and funding cuts:</p>
+                                            <ul class="mb-0">
+                                                <li><strong>First AI Winter (1974-1980):</strong> Early AI systems couldn't solve complex real-world problems.</li>
+                                                <li><strong>Second AI Winter (1987-1993):</strong> Expensive expert systems failed to deliver on their promises.</li>
+                                                <li><strong>Revival (2000s-present):</strong> Increased computing power, big data, and new algorithms led to modern AI successes.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-light">
+                                            <strong>Recent Breakthroughs</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="mb-0">
+                                                <li><strong>IBM Watson (2011):</strong> Beat human champions at Jeopardy, demonstrating advanced natural language processing.</li>
+                                                <li><strong>AlphaGo (2016):</strong> Defeated world champion at Go, a game previously thought too complex for computers.</li>
+                                                <li><strong>GPT Models (2020s):</strong> Large language models capable of generating human-like text and conversations.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="topic-card">
+                                <h3>人工智能的发展历程</h3>
+                                <p class="lead">从科幻到现实：人工智能是如何发展的！</p>
+                                
+                                <div class="timeline mb-4">
+                                    <div class="timeline-item">
+                                        <div class="timeline-marker">1950年代</div>
+                                        <div class="timeline-content">
+                                            <h5>人工智能的诞生</h5>
+                                            <p>科学家们开始思考如何制造具有智能的机器。图灵创造了著名的"图灵测试"，用来评估计算机是否能像人类一样思考。</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="timeline-item">
+                                        <div class="timeline-marker">1960-70年代</div>
+                                        <div class="timeline-content">
+                                            <h5>首批AI程序</h5>
+                                            <p>早期计算机开始能够解决数学问题并玩简单的游戏，如跳棋。</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="timeline-item">
+                                        <div class="timeline-marker">1990-2000年代</div>
+                                        <div class="timeline-content">
+                                            <h5>AI变得更强大</h5>
+                                            <p>计算机的能力显著提升，不仅能够击败国际象棋冠军，还能识别人类语音！</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="timeline-item">
+                                        <div class="timeline-marker">今天</div>
+                                        <div class="timeline-content">
+                                            <h5>AI无处不在</h5>
+                                            <p>AI已融入我们的日常生活，帮助我们导航、推荐购物选择，甚至协助创作艺术作品！</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-4">
+                                    <h4><i class="fas fa-landmark me-2"></i>关键历史里程碑</h4>
+                                    
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-light">
+                                            <strong>达特茅斯会议（1956年）</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <p>通常被认为是人工智能作为一个领域的正式诞生。一群科学家提出"学习的每个方面或智能的任何其他特征都可以被精确描述，以至于可以制造机器来模拟它。"</p>
+                                            <p class="mb-0">这次夏季研讨会创造了"人工智能"一词，并为未来的研究奠定了基础。</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-light">
+                                            <strong>早期AI程序（1950-1960年代）</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="mb-0">
+                                                <li><strong>逻辑理论家（1955）：</strong>第一个AI程序，能够证明数学定理。</li>
+                                                <li><strong>ELIZA（1966）：</strong>一个早期聊天机器人，通过模式匹配模拟人类对话。</li>
+                                                <li><strong>SHRDLU（1970）：</strong>能够在简单积木世界中理解自然语言指令的程序。</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-light">
+                                            <strong>AI寒冬时期</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <p>人工智能研究经历了极度乐观后接着失望和资金削减的循环：</p>
+                                            <ul class="mb-0">
+                                                <li><strong>第一次AI寒冬（1974-1980）：</strong>早期AI系统无法解决复杂的现实世界问题。</li>
+                                                <li><strong>第二次AI寒冬（1987-1993）：</strong>昂贵的专家系统未能兑现承诺。</li>
+                                                <li><strong>复兴（2000年代至今）：</strong>计算能力提升、大数据和新算法导致现代AI成功。</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-light">
+                                            <strong>近期突破</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="mb-0">
+                                                <li><strong>IBM Watson（2011）：</strong>在Jeopardy节目中击败人类冠军，展示了先进的自然语言处理能力。</li>
+                                                <li><strong>AlphaGo（2016）：</strong>在围棋比赛中击败世界冠军，这是一款之前被认为对计算机来说太复杂的游戏。</li>
+                                                <li><strong>GPT模型（2020年代）：</strong>能够生成类人文本和对话的大型语言模型。</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- AI Applications Content -->
+                    <div id="content-applications" class="topic-content d-none">
+                        {% if language == 'english' %}
+                            <div class="topic-card">
+                                <h3>AI in Our Daily Lives</h3>
+                                <p class="lead">Discover how AI is already helping us every day!</p>
+                                
+                                <div class="applications-grid">
+                                    <div class="application-card">
+                                        <i class="fas fa-mobile-alt fa-2x mb-3"></i>
+                                        <h5>Smartphones</h5>
+                                        <ul>
+                                            <li>Face recognition to unlock your phone</li>
+                                            <li>Voice assistants like Siri and Google Assistant</li>
+                                            <li>Smart camera features</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="application-card">
+                                        <i class="fas fa-home fa-2x mb-3"></i>
+                                        <h5>Smart Homes</h5>
+                                        <ul>
+                                            <li>Smart speakers that understand your voice</li>
+                                            <li>Thermostats that learn your preferences</li>
+                                            <li>Security cameras that recognize people</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="application-card">
+                                        <i class="fas fa-shopping-cart fa-2x mb-3"></i>
+                                        <h5>Shopping</h5>
+                                        <ul>
+                                            <li>Product recommendations</li>
+                                            <li>Price predictions</li>
+                                            <li>Customer service chatbots</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="application-card">
+                                        <i class="fas fa-car fa-2x mb-3"></i>
+                                        <h5>Transportation</h5>
+                                        <ul>
+                                            <li>Navigation apps that find the best routes</li>
+                                            <li>Self-driving cars</li>
+                                            <li>Traffic prediction</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-4">
+                                    <h4><i class="fas fa-microscope me-2"></i>How AI is Changing Industries</h4>
+                                    
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-light">
+                                            <strong>Healthcare</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <p>AI is revolutionizing medicine in many ways:</p>
+                                            <ul class="mb-0">
+                                                <li><strong>Medical Imaging:</strong> AI systems can detect diseases like cancer from X-rays and MRIs, sometimes more accurately than human doctors.</li>
+                                                <li><strong>Drug Discovery:</strong> AI drastically speeds up the process of finding new medications by predicting which molecules might work.</li>
+                                                <li><strong>Patient Monitoring:</strong> Smart devices track health metrics and alert doctors to potential problems before they become serious.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-light">
+                                            <strong>Education</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="mb-0">
+                                                <li><strong>Personalized Learning:</strong> AI tutoring systems adapt to each student's strengths and weaknesses.</li>
+                                                <li><strong>Automated Grading:</strong> AI can assess essays and other work, giving teachers more time to focus on teaching.</li>
+                                                <li><strong>Educational Content:</strong> AI helps create interactive learning materials that engage students in new ways.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-light">
+                                            <strong>Entertainment</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="mb-0">
+                                                <li><strong>Content Recommendation:</strong> Streaming services use AI to suggest movies, music, and shows you might enjoy.</li>
+                                                <li><strong>Game Characters:</strong> Video games use AI to create more realistic opponents that adapt to your playing style.</li>
+                                                <li><strong>Creative Tools:</strong> AI assists in creating art, music, and videos, opening new possibilities for digital creators.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mt-4">
+                                        <h4><i class="fas fa-exclamation-triangle me-2"></i>Challenges and Ethical Considerations</h4>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <ul class="mb-0">
+                                                    <li><strong>Privacy Concerns:</strong> AI systems often require large amounts of personal data to function effectively.</li>
+                                                    <li><strong>Bias and Fairness:</strong> AI can inherit biases from its training data, potentially leading to unfair outcomes.</li>
+                                                    <li><strong>Job Displacement:</strong> Automation may change or eliminate certain types of jobs.</li>
+                                                    <li><strong>Safety and Security:</strong> Powerful AI systems need safeguards to prevent misuse or unexpected behavior.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="topic-card">
+                                <h3>日常生活中的人工智能</h3>
+                                <p class="lead">发现AI如何已经在帮助我们的日常生活！</p>
+                                
+                                <div class="applications-grid">
+                                    <div class="application-card">
+                                        <i class="fas fa-mobile-alt fa-2x mb-3"></i>
+                                        <h5>智能手机</h5>
+                                        <ul>
+                                            <li>解锁手机的面部识别功能</li>
+                                            <li>如Siri和小度等语音助手</li>
+                                            <li>智能拍照和图像处理功能</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="application-card">
+                                        <i class="fas fa-home fa-2x mb-3"></i>
+                                        <h5>智能家居</h5>
+                                        <ul>
+                                            <li>可以理解你语音指令的智能音箱</li>
+                                            <li>能根据你的习惯自动调节的温控器</li>
+                                            <li>具备人脸识别功能的安防摄像头</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="application-card">
+                                        <i class="fas fa-shopping-cart fa-2x mb-3"></i>
+                                        <h5>购物体验</h5>
+                                        <ul>
+                                            <li>个性化产品推荐</li>
+                                            <li>价格变动预测</li>
+                                            <li>智能客服机器人</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="application-card">
+                                        <i class="fas fa-car fa-2x mb-3"></i>
+                                        <h5>交通出行</h5>
+                                        <ul>
+                                            <li>能找到最佳路线的导航应用</li>
+                                            <li>自动驾驶技术</li>
+                                            <li>实时交通状况预测</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-4">
+                                    <h4><i class="fas fa-microscope me-2"></i>人工智能如何改变各行各业</h4>
+                                    
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-light">
+                                            <strong>医疗健康</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <p>AI正在多方面革新医学领域：</p>
+                                            <ul class="mb-0">
+                                                <li><strong>医学影像：</strong>AI系统可以从X光片和核磁共振成像中检测癌症等疾病，有时比人类医生更准确。</li>
+                                                <li><strong>药物研发：</strong>AI通过预测哪些分子可能有效，大大加快了发现新药的过程。</li>
+                                                <li><strong>患者监测：</strong>智能设备跟踪健康指标，在问题变得严重之前提醒医生注意潜在问题。</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-light">
+                                            <strong>教育</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="mb-0">
+                                                <li><strong>个性化学习：</strong>AI辅导系统会根据每个学生的优势和弱点进行调整。</li>
+                                                <li><strong>自动评分：</strong>AI可以评估论文和其他作业，让教师有更多时间专注于教学。</li>
+                                                <li><strong>教育内容：</strong>AI帮助创建以新方式吸引学生的互动学习材料。</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-light">
+                                            <strong>娱乐</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="mb-0">
+                                                <li><strong>内容推荐：</strong>流媒体服务使用AI推荐您可能喜欢的电影、音乐和节目。</li>
+                                                <li><strong>游戏角色：</strong>视频游戏使用AI创建更逼真的对手，能够适应您的游戏风格。</li>
+                                                <li><strong>创意工具：</strong>AI辅助创作艺术、音乐和视频，为数字创作者开辟新的可能性。</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mt-4">
+                                        <h4><i class="fas fa-exclamation-triangle me-2"></i>挑战与伦理考量</h4>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <ul class="mb-0">
+                                                    <li><strong>隐私问题：</strong>AI系统通常需要大量个人数据才能有效运行。</li>
+                                                    <li><strong>偏见与公平性：</strong>AI可能从训练数据中继承偏见，可能导致不公平的结果。</li>
+                                                    <li><strong>就业替代：</strong>自动化可能会改变或消除某些类型的工作。</li>
+                                                    <li><strong>安全与保障：</strong>强大的AI系统需要保障措施，防止滥用或意外行为。</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <!-- Quiz Section -->
+                <div id="quiz-section" class="mt-4 d-none">
+                    <div class="quiz-card p-4 border rounded shadow-sm">
+                        <h4 class="d-flex align-items-center mb-4">
+                            <i class="fas fa-question-circle me-2 text-primary"></i>
+                            <span id="quiz-title">
+                                {% if language == 'english' %}Knowledge Check{% else %}知识检查{% endif %}
+                            </span>
+                        </h4>
+                        <div id="quiz-questions">
+                            <!-- Quiz questions will be dynamically loaded -->
+                        </div>
+                        <div class="mt-4 text-end">
+                            <button id="retry-quiz" class="btn btn-outline-primary d-none">
+                                <i class="fas fa-redo me-1"></i>
+                                {% if language == 'english' %}Try Again{% else %}再试一次{% endif %}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Next Steps -->
+        <div class="card">
+            <div class="card-body">
+                <h4>
+                    <i class="fas fa-forward me-2"></i>
+                    {% if language == 'english' %}Next Steps{% else %}下一步{% endif %}
+                </h4>
+                <div class="d-flex gap-3">
+                    <a href="#" class="btn btn-outline-primary">
+                        <i class="fas fa-book me-1"></i>
+                        {% if language == 'english' %}Neural Networks{% else %}神经网络{% endif %}
+                    </a>
+                    <a href="#" class="btn btn-outline-primary">
+                        <i class="fas fa-laptop-code me-1"></i>
+                        {% if language == 'english' %}Practice Exercise{% else %}练习题{% endif %}
+                    </a>
+                    <a href="#" class="btn btn-outline-primary">
+                        <i class="fas fa-project-diagram me-1"></i>
+                        {% if language == 'english' %}Real-world Examples{% else %}实际应用{% endif %}
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+.timeline {
+    position: relative;
+    padding: 20px 0;
+}
+
+.timeline-item {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.timeline-marker {
+    flex: 0 0 100px;
+    font-weight: bold;
+    color: #0d6efd;
+}
+
+.timeline-content {
+    flex: 1;
+    padding-left: 20px;
+    border-left: 2px solid #0d6efd;
+}
+
+.applications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.application-card {
+    padding: 20px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.application-card ul {
+    text-align: left;
+    padding-left: 20px;
+}
+
+.topic-content {
+    display: none;
+}
+
+.topic-content.active {
+    display: block;
+}
+
+.quiz-question {
+    margin-bottom: 1.5rem;
+}
+
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.quiz-option {
+    padding: 12px 15px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.quiz-option:hover {
+    background-color: #f8f9fa;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.quiz-option .option-letter {
+    font-weight: bold;
+    margin-right: 10px;
+    color: #6c757d;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #e9ecef;
+}
+
+.quiz-option.correct {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+    pointer-events: none;
+}
+
+.quiz-option.incorrect {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+    pointer-events: none;
+}
+
+.quiz-option.correct .option-letter {
+    background-color: #28a745;
+    color: white;
+}
+
+.quiz-option.incorrect .option-letter {
+    background-color: #dc3545;
+    color: white;
+}
+</style>
+
 {% endblock %}
 
 {% block extra_js %}
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Topic switching
-        const topicLinks = document.querySelectorAll('.list-group-item-action');
-        const topicTitle = document.getElementById('topic-title');
-        
-        topicLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Remove active class from all links
-                topicLinks.forEach(l => l.classList.remove('active'));
-                
-                // Add active class to clicked link
-                this.classList.add('active');
-                
-                // Update topic title
-                topicTitle.textContent = this.textContent.trim();
-                
-                // Hide all content divs
-                // In a real app, you would show/hide the appropriate content
-                // This is just a placeholder for demonstration
-                console.log(`Switching to topic: ${this.id}`);
-            });
-        });
-        
-        // Toggle explanation level button
-        const toggleButton = document.getElementById('toggle-explanation-level');
-        toggleButton.addEventListener('click', function() {
-            const currentLevel = '{{ level }}';
-            const newLevel = currentLevel === 'simple' ? 'normal' : 'simple';
-            window.location.href = "{{ url_for('set_level', level='') }}" + newLevel;
+document.addEventListener('DOMContentLoaded', function() {
+    // Topic switching
+    const topicLinks = document.querySelectorAll('.list-group-item-action');
+    const topicContents = document.querySelectorAll('.topic-content');
+    const topicTitle = document.getElementById('topic-title');
+    
+    topicLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Remove active class from all links and contents
+            topicLinks.forEach(l => l.classList.remove('active'));
+            topicContents.forEach(c => c.classList.add('d-none'));
+            
+            // Add active class to clicked link
+            this.classList.add('active');
+            
+            // Show corresponding content
+            const topicId = this.id;
+            const content = document.getElementById('content-' + topicId.split('-')[1]);
+            content.classList.remove('d-none');
+            
+            // Update topic title
+            topicTitle.textContent = this.querySelector('div > div').textContent.trim();
+            
+            // Update quiz if it's visible
+            if (!quizSection.classList.contains('d-none')) {
+                loadQuizQuestions();
+                updateQuizTitle();
+                retryQuizBtn.classList.add('d-none');
+            }
         });
     });
+    
+    // Toggle explanation level button
+    const toggleButton = document.getElementById('toggle-explanation-level');
+    toggleButton.addEventListener('click', function() {
+        const currentLevel = '{{ level }}';
+        const newLevel = currentLevel === 'simple' ? 'normal' : 'simple';
+        window.location.href = "{{ url_for('set_level', level='') }}" + newLevel;
+    });
+    
+    // Quiz functionality
+    const startQuizBtn = document.getElementById('start-quiz');
+    const quizSection = document.getElementById('quiz-section');
+    const quizQuestions = document.getElementById('quiz-questions');
+    const quizTitle = document.getElementById('quiz-title');
+    const retryQuizBtn = document.getElementById('retry-quiz');
+    
+    startQuizBtn.addEventListener('click', function() {
+        quizSection.classList.toggle('d-none');
+        if (!quizSection.classList.contains('d-none')) {
+            loadQuizQuestions();
+            updateQuizTitle();
+        }
+    });
+    
+    retryQuizBtn.addEventListener('click', function() {
+        loadQuizQuestions();
+        retryQuizBtn.classList.add('d-none');
+    });
+    
+    function updateQuizTitle() {
+        const activeTopic = document.querySelector('.list-group-item-action.active').id;
+        const topicType = activeTopic.split('-')[1]; // intro, history, or applications
+        
+        const titleMap = {
+            'intro': '{% if language == "english" %}What is AI - Quiz{% else %}什么是人工智能 - 测验{% endif %}',
+            'history': '{% if language == "english" %}AI History - Quiz{% else %}人工智能历史 - 测验{% endif %}',
+            'applications': '{% if language == "english" %}AI in Daily Life - Quiz{% else %}日常生活中的人工智能 - 测验{% endif %}'
+        };
+        
+        quizTitle.textContent = titleMap[topicType] || '{% if language == "english" %}Knowledge Check{% else %}知识检查{% endif %}';
+    }
+    
+    function loadQuizQuestions() {
+        // Get current topic ID
+        const activeTopic = document.querySelector('.list-group-item-action.active').id;
+        const topicType = activeTopic.split('-')[1]; // intro, history, or applications
+        
+        // Define questions for each topic (5 questions per topic with increasing difficulty)
+        const questionSets = {
+            'intro': [
+                {
+                    question: '{{ language == "english" and "What is AI?" or "什么是人工智能？" }}',
+                    options: [
+                        '{{ language == "english" and "Technology that helps computers think and learn" or "帮助计算机思考和学习的技术" }}',
+                        '{{ language == "english" and "A robot with human-like appearance" or "一个外表像人的机器人" }}',
+                        '{{ language == "english" and "Software for designing graphics" or "用于设计图形的软件" }}'
+                    ],
+                    correct: 0,
+                    difficulty: 1
+                },
+                {
+                    question: '{{ language == "english" and "What does AI actually do with data?" or "人工智能实际上对数据做什么？" }}',
+                    options: [
+                        '{{ language == "english" and "It thinks exactly like humans do" or "它完全像人类一样思考" }}',
+                        '{{ language == "english" and "It finds patterns and makes predictions" or "它找到规律并进行预测" }}',
+                        '{{ language == "english" and "It has feelings about the information" or "它对信息产生感情" }}'
+                    ],
+                    correct: 1,
+                    difficulty: 2
+                },
+                {
+                    question: '{{ language == "english" and "Which of these is NOT an example of AI?" or "以下哪项不是人工智能的例子？" }}',
+                    options: [
+                        '{{ language == "english" and "A chatbot that answers customer questions" or "回答客户问题的聊天机器人" }}',
+                        '{{ language == "english" and "A program that suggests movies based on your history" or "根据您的历史记录推荐电影的程序" }}',
+                        '{{ language == "english" and "A calculator that adds numbers" or "一个计算器，用于加数字" }}'
+                    ],
+                    correct: 2,
+                    difficulty: 3
+                },
+                {
+                    question: '{{ language == "english" and "What is the relationship between AI and machine learning?" or "人工智能和机器学习之间有什么关系？" }}',
+                    options: [
+                        '{{ language == "english" and "They are completely different technologies" or "它们是完全不同的技术" }}',
+                        '{{ language == "english" and "Machine learning is a subset of AI" or "机器学习是人工智能的一个子集" }}',
+                        '{{ language == "english" and "AI is a subset of machine learning" or "人工智能是机器学习的一个子集" }}'
+                    ],
+                    correct: 1,
+                    difficulty: 4
+                },
+                {
+                    question: '{{ language == "english" and "Why is AI NOT actually \"intelligent\" in the human sense?" or "为什么人工智能实际上不具备人类意义上的\"智能\"？" }}',
+                    options: [
+                        '{{ language == "english" and "It can't process as much information as humans" or "它处理信息的能力不如人类" }}',
+                        '{{ language == "english" and "It needs too much electricity to operate" or "它需要消耗太多电力才能运行" }}',
+                        '{{ language == "english" and "It doesn't have consciousness or understanding" or "它没有意识和真正的理解能力" }}'
+                    ],
+                    correct: 2,
+                    difficulty: 5
+                }
+            ],
+            'history': [
+                {
+                    question: '{{ language == "english" and "When did AI research begin?" or "人工智能研究何时开始？" }}',
+                    options: [
+                        '{{ language == "english" and "1950s" or "1950年代" }}',
+                        '{{ language == "english" and "1980s" or "1980年代" }}',
+                        '{{ language == "english" and "2000s" or "2000年代" }}'
+                    ],
+                    correct: 0,
+                    difficulty: 1
+                },
+                {
+                    question: '{{ language == "english" and "What was an early achievement of AI?" or "人工智能早期的重要成就是什么？" }}',
+                    options: [
+                        '{{ language == "english" and "Facial recognition" or "面部识别技术" }}',
+                        '{{ language == "english" and "Playing checkers" or "能够下跳棋的程序" }}',
+                        '{{ language == "english" and "Writing novels" or "编写小说" }}'
+                    ],
+                    correct: 1,
+                    difficulty: 2
+                },
+                {
+                    question: '{{ language == "english" and "What is the Turing Test?" or "什么是图灵测试？" }}',
+                    options: [
+                        '{{ language == "english" and "A test to measure computer processing speed" or "测量计算机处理速度的测试" }}',
+                        '{{ language == "english" and "A test to see if a machine can imitate human intelligence" or "检验机器是否能模仿人类智能的测试" }}',
+                        '{{ language == "english" and "A security test for computer programs" or "计算机程序的安全性测试" }}'
+                    ],
+                    correct: 1,
+                    difficulty: 3
+                },
+                {
+                    question: '{{ language == "english" and "Which event marked a major AI breakthrough in the 1990s?" or "1990年代哪一事件标志着人工智能的重大突破？" }}',
+                    options: [
+                        '{{ language == "english" and "Deep Blue beating chess champion Garry Kasparov" or "深蓝战胜国际象棋冠军卡斯帕罗夫" }}',
+                        '{{ language == "english" and "The release of Windows 95" or "Windows 95的发布" }}',
+                        '{{ language == "english" and "The invention of the World Wide Web" or "万维网的发明" }}'
+                    ],
+                    correct: 0,
+                    difficulty: 4
+                },
+                {
+                    question: '{{ language == "english" and "What caused the \"AI winter\" periods in AI development?" or "是什么导致了人工智能发展中的\"AI寒冬\"时期？" }}',
+                    options: [
+                        '{{ language == "english" and "Lack of funding due to overpromised capabilities" or "对AI能力的过度承诺导致资金投入减少" }}',
+                        '{{ language == "english" and "Computer hardware wasn't powerful enough" or "计算机硬件性能不足" }}',
+                        '{{ language == "english" and "Scientists lost interest in the field" or "科学家对该领域失去兴趣" }}'
+                    ],
+                    correct: 0,
+                    difficulty: 5
+                }
+            ],
+            'applications': [
+                {
+                    question: '{{ language == "english" and "Which of these uses AI?" or "下列哪项技术使用了人工智能？" }}',
+                    options: [
+                        '{{ language == "english" and "A digital alarm clock" or "普通数字闹钟" }}',
+                        '{{ language == "english" and "A music streaming service that recommends songs" or "能够推荐歌曲的音乐流媒体服务" }}',
+                        '{{ language == "english" and "A basic calculator" or "基础计算器" }}'
+                    ],
+                    correct: 1,
+                    difficulty: 1
+                },
+                {
+                    question: '{{ language == "english" and "How does AI help with navigation apps?" or "人工智能如何提升导航应用的体验？" }}',
+                    options: [
+                        '{{ language == "english" and "It draws the maps" or "它负责绘制地图" }}',
+                        '{{ language == "english" and "It predicts traffic patterns and finds optimal routes" or "它预测交通流量并计算最佳路线" }}',
+                        '{{ language == "english" and "It only gives directions" or "它只提供方向指引" }}'
+                    ],
+                    correct: 1,
+                    difficulty: 2
+                },
+                {
+                    question: '{{ language == "english" and "Which of these is NOT a common use of AI in smartphones?" or "以下哪项不是智能手机中人工智能的常见应用？" }}',
+                    options: [
+                        '{{ language == "english" and "Face recognition for unlocking" or "用于解锁的面部识别" }}',
+                        '{{ language == "english" and "Voice assistants" or "语音助手" }}',
+                        '{{ language == "english" and "Battery charging" or "电池充电" }}'
+                    ],
+                    correct: 2,
+                    difficulty: 3
+                },
+                {
+                    question: '{{ language == "english" and "How do smart home devices use AI?" or "智能家居设备如何运用人工智能？" }}',
+                    options: [
+                        '{{ language == "english" and "They learn user preferences and adjust settings automatically" or "它们会学习用户偏好并自动调整设置" }}',
+                        '{{ language == "english" and "They just follow manual programming" or "它们只是按照人工编程的指令运行" }}',
+                        '{{ language == "english" and "They don't use AI at all" or "它们完全不使用人工智能技术" }}'
+                    ],
+                    correct: 0,
+                    difficulty: 4
+                },
+                {
+                    question: '{{ language == "english" and "What ethical concern arises with AI in surveillance systems?" or "在监控系统中使用人工智能会引发什么伦理问题？" }}',
+                    options: [
+                        '{{ language == "english" and "The systems use too much electricity" or "系统耗电量过大" }}',
+                        '{{ language == "english" and "Privacy and potential bias in recognition" or "隐私问题和识别过程中可能存在的偏见" }}',
+                        '{{ language == "english" and "The cameras are too expensive" or "摄像头成本太高" }}'
+                    ],
+                    correct: 1,
+                    difficulty: 5
+                }
+            ]
+        };
+        
+        // Select the appropriate question set
+        const questions = questionSets[topicType] || questionSets['intro'];
+        
+        // Track quiz state
+        window.quizState = {
+            totalQuestions: questions.length,
+            correctAnswers: 0,
+            questionsAnswered: 0,
+            topicType: topicType
+        };
+        
+        quizQuestions.innerHTML = `
+            <div class="progress mb-4">
+                <div id="quiz-progress-bar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+            </div>
+        ` + questions.map((q, i) => `
+            <div class="quiz-question mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <p class="fw-bold mb-0">${i + 1}. ${q.question}</p>
+                    <span class="badge bg-${getDifficultyBadgeColor(q.difficulty)}">
+                        ${'★'.repeat(q.difficulty)}${'☆'.repeat(5-q.difficulty)}
+                    </span>
+                </div>
+                <div class="quiz-options">
+                    ${q.options.map((opt, j) => `
+                        <div class="quiz-option" data-correct="${j === q.correct}" data-question-index="${i}">
+                            <span class="option-letter">${String.fromCharCode(65 + j)}.</span>
+                            ${opt}
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `).join('') + `
+            <div id="quiz-results" class="alert d-none mt-4"></div>
+        `;
+        
+        // Add click handlers for quiz options
+        document.querySelectorAll('.quiz-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const isCorrect = this.dataset.correct === 'true';
+                const questionIndex = parseInt(this.dataset.questionIndex);
+                this.classList.add(isCorrect ? 'correct' : 'incorrect');
+                
+                // Update quiz state
+                window.quizState.questionsAnswered++;
+                if (isCorrect) {
+                    window.quizState.correctAnswers++;
+                }
+                
+                // Update progress bar
+                const progressPercent = (window.quizState.questionsAnswered / window.quizState.totalQuestions) * 100;
+                const progressBar = document.getElementById('quiz-progress-bar');
+                progressBar.style.width = `${progressPercent}%`;
+                progressBar.innerText = `${Math.round(progressPercent)}%`;
+                progressBar.setAttribute('aria-valuenow', progressPercent);
+                
+                // Disable other options in the same question
+                const questionDiv = this.closest('.quiz-question');
+                questionDiv.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.style.pointerEvents = 'none';
+                    if (opt.dataset.correct === 'true') {
+                        opt.classList.add('correct');
+                    }
+                });
+                
+                // Check if quiz is complete
+                if (window.quizState.questionsAnswered === window.quizState.totalQuestions) {
+                    showQuizResults();
+                }
+            });
+        });
+    }
+    
+    function showQuizResults() {
+        const score = (window.quizState.correctAnswers / window.quizState.totalQuestions) * 100;
+        const resultsDiv = document.getElementById('quiz-results');
+        const progressBar = document.getElementById('quiz-progress-bar');
+        
+        // Update progress bar color based on score
+        if (score >= 80) {
+            progressBar.classList.remove('bg-primary');
+            progressBar.classList.add('bg-success');
+        } else if (score >= 60) {
+            progressBar.classList.remove('bg-primary');
+            progressBar.classList.add('bg-warning');
+        } else {
+            progressBar.classList.remove('bg-primary');
+            progressBar.classList.add('bg-danger');
+        }
+        
+        // Show results message
+        resultsDiv.classList.remove('d-none', 'alert-success', 'alert-warning', 'alert-danger');
+        if (score >= 80) {
+            resultsDiv.classList.add('alert-success');
+            resultsDiv.innerHTML = `
+                <h5><i class="fas fa-trophy me-2"></i>{% if language == "english" %}Excellent!{% else %}太棒了!{% endif %}</h5>
+                <p>{% if language == "english" %}You scored ${score}% (${window.quizState.correctAnswers}/${window.quizState.totalQuestions}){% else %}您的得分是 ${score}%（${window.quizState.correctAnswers}/${window.quizState.totalQuestions}）{% endif %}</p>
+                <p>{% if language == "english" %}You have a great understanding of this topic!{% else %}您对这个主题理解得非常好！{% endif %}</p>
+            `;
+        } else if (score >= 60) {
+            resultsDiv.classList.add('alert-warning');
+            resultsDiv.innerHTML = `
+                <h5><i class="fas fa-check-circle me-2"></i>{% if language == "english" %}Good job!{% else %}不错!{% endif %}</h5>
+                <p>{% if language == "english" %}You scored ${score}% (${window.quizState.correctAnswers}/${window.quizState.totalQuestions}){% else %}您的得分是 ${score}%（${window.quizState.correctAnswers}/${window.quizState.totalQuestions}）{% endif %}</p>
+                <p>{% if language == "english" %}You've passed, but there's still room to improve.{% else %}您已经通过了，但还有进步的空间。{% endif %}</p>
+            `;
+        } else {
+            resultsDiv.classList.add('alert-danger');
+            resultsDiv.innerHTML = `
+                <h5><i class="fas fa-exclamation-triangle me-2"></i>{% if language == "english" %}Try again!{% else %}再试一次!{% endif %}</h5>
+                <p>{% if language == "english" %}You scored ${score}% (${window.quizState.correctAnswers}/${window.quizState.totalQuestions}){% else %}您的得分是 ${score}%（${window.quizState.correctAnswers}/${window.quizState.totalQuestions}）{% endif %}</p>
+                <p>{% if language == "english" %}You need to score at least 60% to pass. Please review the material and try again.{% else %}您需要获得至少60%的分数才能通过。请重新复习内容后再尝试。{% endif %}</p>
+            `;
+        }
+        
+        // Update retry button visibility and behavior
+        retryQuizBtn.classList.remove('d-none');
+        
+        // Update the progress percentage for this topic
+        updateTopicProgress(window.quizState.topicType, score);
+    }
+    
+    function updateTopicProgress(topicType, score) {
+        // Only update if score is 60% or higher
+        if (score >= 60) {
+            const topicElement = document.getElementById(`topic-${topicType}`);
+            const progressBar = topicElement.querySelector('.progress-bar');
+            const percentBadge = topicElement.querySelector('.badge');
+            
+            // Set progress percentage (capped at score value)
+            const currentProgress = parseInt(percentBadge.textContent);
+            const newProgress = Math.max(currentProgress, Math.round(score));
+            
+            progressBar.style.width = `${newProgress}%`;
+            percentBadge.textContent = `${newProgress}%`;
+        }
+    }
+    
+    function getDifficultyBadgeColor(difficulty) {
+        switch(difficulty) {
+            case 1: return 'success';
+            case 2: return 'info';
+            case 3: return 'primary';
+            case 4: return 'warning';
+            case 5: return 'danger';
+            default: return 'primary';
+        }
+    }
+});
 </script>
 {% endblock %} 

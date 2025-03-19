@@ -1,19 +1,20 @@
 /* Modern UI Styles for AI Explainer */
 :root {
-    --primary-color: #4361ee;
-    --primary-dark: #3a56d4;
-    --secondary-color: #7209b7;
-    --accent-color: #f72585;
-    --light-color: #f8f9fa;
-    --dark-color: #212529;
-    --gray-color: #6c757d;
-    --success-color: #4cc9f0;
-    --warning-color: #f77f00;
-    --danger-color: #e63946;
-    --transition: all 0.3s ease;
-    --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    --card-radius: 12px;
-    --button-radius: 8px;
+    --primary-color: #4f46e5;
+    --primary-dark: #4338ca;
+    --secondary-color: #7c3aed;
+    --accent-color: #ec4899;
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --danger-color: #ef4444;
+    --light-color: #f8fafc;
+    --dark-color: #1e293b;
+    --gray-color: #64748b;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --card-radius: 1rem;
+    --button-radius: 0.5rem;
 }
 
 /* Global Styles */
@@ -55,16 +56,19 @@ a:hover {
     border: none;
     overflow: hidden;
     margin-bottom: 1.5rem;
+    background: white;
+    position: relative;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
 }
 
 .card-header {
-    font-weight: bold;
-    padding: 1rem 1.5rem;
+    font-weight: 600;
+    padding: 1.25rem 1.5rem;
+    background: white;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
@@ -550,4 +554,130 @@ a:hover {
 
 .dark-mode .form-control:focus {
     background-color: #3a3a3a;
+}
+
+/* Learning Resources Specific Styles */
+.topic-card {
+    border-left: 4px solid var(--primary-color);
+    background: white;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    transition: var(--transition);
+}
+
+.topic-card:hover {
+    transform: translateX(4px);
+    box-shadow: var(--shadow);
+}
+
+.concept-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.concept-list li {
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+    background: var(--light-color);
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.concept-list li i {
+    color: var(--primary-color);
+}
+
+.progress-indicator {
+    height: 0.5rem;
+    background: #e2e8f0;
+    border-radius: 1rem;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    border-radius: 1rem;
+    transition: width 0.3s ease;
+}
+
+.difficulty-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    gap: 0.5rem;
+}
+
+.difficulty-beginner {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.difficulty-intermediate {
+    background: #fff7ed;
+    color: #9a3412;
+}
+
+.difficulty-advanced {
+    background: #fef2f2;
+    color: #991b1b;
+}
+
+.interactive-example {
+    background: #f8fafc;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border: 1px solid #e2e8f0;
+}
+
+.interactive-example pre {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+}
+
+.quiz-card {
+    background: white;
+    border-radius: var(--card-radius);
+    padding: 1.5rem;
+    margin: 1rem 0;
+    box-shadow: var(--shadow);
+}
+
+.quiz-option {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.quiz-option:hover {
+    background: var(--light-color);
+    border-color: var(--primary-color);
+}
+
+.quiz-option.correct {
+    background: #dcfce7;
+    border-color: #166534;
+}
+
+.quiz-option.incorrect {
+    background: #fef2f2;
+    border-color: #991b1b;
 } 
